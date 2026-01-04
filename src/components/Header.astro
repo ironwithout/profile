@@ -1,0 +1,35 @@
+---
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/professional', label: 'Professional' },
+  { href: '/personal', label: 'Personal' },
+  { href: '/blog', label: 'Blog' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+  <nav class="container mx-auto px-4 py-4">
+    <div class="flex items-center justify-between">
+      <a href="/" class="text-2xl font-bold text-blue-600 dark:text-blue-400">
+        YourName
+      </a>
+      <ul class="flex gap-6">
+        {navItems.map(({ href, label }) => (
+          <li>
+            <a 
+              href={href}
+              class:list={[
+                "hover:text-blue-600 dark:hover:text-blue-400 transition-colors",
+                currentPath === href && "text-blue-600 dark:text-blue-400 font-semibold"
+              ]}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </nav>
+</header>
