@@ -1,8 +1,9 @@
 name: Build and Push to ECR
 
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
+#  push:
+#    branches: [main]
 
 jobs:
   test-and-build:
