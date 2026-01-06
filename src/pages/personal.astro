@@ -27,18 +27,27 @@ const projects = [
 ---
 
 <Layout title="Personal Projects" description="Side projects and experiments">
-  <div class="container mx-auto px-4 py-16">
-    <h1 class="text-4xl font-bold mb-4 text-center text-gray-900 dark:text-white">
-      Personal Projects
-    </h1>
-    <p class="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
-      Side projects, experiments, and open-source contributions I work on in my free time.
-    </p>
+  <div class="min-h-screen bg-gray-950">
+    <div class="container mx-auto px-4 py-12 max-w-5xl">
+      
+      <!-- Header -->
+      <div class="mb-12 font-mono">
+        <div class="text-gray-500 text-sm mb-2">~/projects/personal</div>
+        <h1 class="text-4xl text-white mb-4 font-semibold">
+          <span class="text-emerald-400">$</span> ls -la
+        </h1>
+        <div class="text-gray-400 text-sm">
+          Found <span class="text-cyan-400 font-semibold">{projects.length}</span> projects
+          <span class="text-gray-600"> — Side projects, experiments, and open-source contributions</span>
+        </div>
+      </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-      {projects.map(project => (
-        <ProjectCard {...project} />
-      ))}
+      <!-- Projects list -->
+      <div class="space-y-6">
+        {projects.map(project => (
+          <ProjectCard {...project} />
+        ))}
+      </div>
     </div>
   </div>
 </Layout>

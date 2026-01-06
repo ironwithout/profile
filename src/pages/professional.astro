@@ -1,42 +1,112 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ProjectCard from '../components/ProjectCard.astro';
+import ExperienceCard from '../components/ExperienceCard.astro';
 
-const projects = [
+const experiences = [
   {
-    title: "E-Commerce Platform",
-    description: "Full-stack e-commerce solution with payment integration, inventory management, and analytics dashboard.",
-    technologies: ["React", "Node.js", "PostgreSQL", "Stripe"],
-    link: "https://example.com",
+    company: "TechCorp",
+    role: "Senior Full-Stack Developer",
+    period: "2022 → Present",
+    location: "Remote",
+    status: "current" as const,
+    description: "Leading development of scalable web applications and architecting cloud infrastructure",
+    achievements: [
+      "Architected microservices platform serving 100K+ daily active users",
+      "Reduced API response time by 60% through caching and optimization",
+      "Led cross-functional team of 5 engineers delivering major features on schedule",
+    ],
+    technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "AWS", "Docker"],
   },
   {
-    title: "Analytics Dashboard",
-    description: "Real-time data visualization platform for business intelligence and reporting.",
-    technologies: ["TypeScript", "D3.js", "Express", "Redis"],
-    link: "https://example.com",
+    company: "Digital Studio",
+    role: "Full-Stack Developer",
+    period: "2020 → 2022",
+    location: "Hybrid",
+    status: "completed" as const,
+    description: "Built custom solutions for clients ranging from early-stage startups to enterprises",
+    achievements: [
+      "Developed real-time analytics dashboard processing 1M+ daily events",
+      "Implemented CI/CD pipeline cutting deployment time from 2hrs to 10min",
+      "Collaborated with design team on award-winning product interfaces",
+    ],
+    technologies: ["Vue.js", "Python", "Django", "Redis", "MongoDB", "GCP"],
   },
   {
-    title: "API Gateway",
-    description: "Microservices API gateway with authentication, rate limiting, and monitoring.",
-    technologies: ["Node.js", "Docker", "Kubernetes", "MongoDB"],
-    github: "https://github.com/yourusername/project",
+    company: "StartupCo",
+    role: "Software Engineer",
+    period: "2018 → 2020",
+    location: "On-site",
+    status: "completed" as const,
+    description: "Core team member building MVP and early product iterations in fast-paced environment",
+    achievements: [
+      "Built MVP that secured $2M seed funding from tier-1 VCs",
+      "Created authentication gateway handling 10+ microservices",
+      "Established testing practices achieving 85% code coverage",
+    ],
+    technologies: ["JavaScript", "Express", "MySQL", "Kubernetes", "Jenkins"],
   },
+];
+
+const skills = [
+  { category: "Frontend", items: ["React", "TypeScript", "Next.js", "Tailwind"] },
+  { category: "Backend", items: ["Node.js", "Python", "PostgreSQL", "Redis"] },
+  { category: "Cloud", items: ["AWS", "Docker", "Kubernetes", "Terraform"] },
+  { category: "Tools", items: ["Git", "CI/CD", "Monitoring", "Testing"] },
 ];
 ---
 
-<Layout title="Professional Projects" description="Professional work and client projects">
-  <div class="container mx-auto px-4 py-16">
-    <h1 class="text-4xl font-bold mb-4 text-center text-gray-900 dark:text-white">
-      Professional Projects
-    </h1>
-    <p class="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
-      A selection of professional work and client projects I've contributed to.
-    </p>
+<Layout title="Professional Experience" description="Career history and technical background">
+  <div class="min-h-screen bg-gray-950 text-gray-300">
+    <div class="container mx-auto px-4 py-12 max-w-5xl">
+      
+      <!-- Terminal-style header -->
+      <div class="mb-12 font-mono">
+        <div class="text-gray-500 text-sm mb-2">~/experience</div>
+        <h1 class="text-4xl text-white mb-4 font-semibold">
+          <span class="text-emerald-400">$</span> cat professional_history.log
+        </h1>
+        <div class="text-gray-400 text-sm">
+          Listed <span class="text-cyan-400 font-semibold">{experiences.length}</span> positions 
+          <span class="text-gray-600">(Ctrl+F to search)</span>
+        </div>
+      </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-      {projects.map(project => (
-        <ProjectCard {...project} />
-      ))}
+      <!-- Experience list -->
+      <div class="mb-16">
+        {experiences.map(experience => (
+          <ExperienceCard {...experience} />
+        ))}
+      </div>
+
+      <!-- Skills grid -->
+      <div class="border-t-2 border-gray-800 pt-12 font-mono text-sm">
+        <div class="flex items-center gap-2 mb-6">
+          <span class="text-blue-400">●</span>
+          <span class="text-white font-semibold">Skills & Technologies</span>
+        </div>
+        
+        <div class="ml-6 pl-6 border-l-2 border-gray-800 grid grid-cols-1 md:grid-cols-2 gap-8">
+          {skills.map(({ category, items }) => (
+            <div>
+              <div class="text-cyan-400 mb-3 font-semibold">{category}:</div>
+              <div class="flex flex-wrap gap-2">
+                {items.map(item => (
+                  <span class="px-2 py-1 bg-gray-900 text-gray-300 rounded border border-gray-800 hover:border-gray-600 hover:text-white transition-colors">{item}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="mt-16 pt-8 border-t border-gray-800 dark:border-gray-800 font-mono text-xs text-gray-600 dark:text-gray-600">
+        <div class="flex items-center gap-2">
+          <span class="animate-pulse">▊</span>
+          <span>End of file</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </Layout>

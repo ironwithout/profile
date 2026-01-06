@@ -9,23 +9,23 @@ const navItems = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+<header class="bg-gray-900 border-b-2 border-gray-800 font-mono">
   <nav class="container mx-auto px-4 py-4">
     <div class="flex items-center justify-between">
-      <a href="/" class="text-2xl font-bold text-blue-600 dark:text-blue-400">
-        Miguel Sánchez
+      <a href="/" class="text-xl font-semibold text-emerald-400 hover:text-emerald-300 transition-colors">
+        <span class="text-gray-600">~</span>/miguel-sanchez
       </a>
-      <ul class="flex gap-6">
+      <ul class="flex gap-6 text-sm">
         {navItems.map(({ href, label }) => (
           <li>
             <a 
               href={href}
               class:list={[
-                "hover:text-blue-600 dark:hover:text-blue-400 transition-colors",
-                currentPath === href && "text-blue-600 dark:text-blue-400 font-semibold"
+                "hover:text-cyan-400 transition-colors",
+                currentPath === href ? "text-cyan-400" : "text-gray-400"
               ]}
             >
-              {label}
+              {currentPath === href && <span class="text-emerald-400">$ </span>}{label}
             </a>
           </li>
         ))}
