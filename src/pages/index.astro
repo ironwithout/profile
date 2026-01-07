@@ -17,7 +17,7 @@ import { projects } from '../data/projects';
     
     <!-- Introduction Section -->
     <section class="snap-start min-h-screen flex items-center" data-section="0">
-      <div class="container mx-auto px-4 py-12 max-w-5xl">
+      <div class="container mx-auto px-4 py-12 max-w-5xl section-content">
         <TechSection>
           <TechText variant="h1">
             {profile.name}
@@ -33,7 +33,7 @@ import { projects } from '../data/projects';
 
     <!-- Career Section -->
     <section class="snap-start min-h-screen flex items-center" data-section="1">
-      <div class="container mx-auto px-4 py-12 max-w-5xl">
+      <div class="container mx-auto px-4 py-12 max-w-5xl section-content">
         <TechSection>
           <TechText variant="h2">
             Career
@@ -58,7 +58,7 @@ import { projects } from '../data/projects';
 
     <!-- Skills & Technologies Section -->
     <section class="snap-start min-h-screen flex items-center" data-section="2">
-      <div class="container mx-auto px-4 py-12 max-w-5xl">
+      <div class="container mx-auto px-4 py-12 max-w-5xl section-content">
         <TechSection>
           <TechText variant="h2">
             Skills & Technologies
@@ -112,7 +112,7 @@ import { projects } from '../data/projects';
 
     <!-- Projects Section -->
     <section class="snap-start min-h-screen flex flex-col justify-between" data-section="3">
-      <div class="container mx-auto px-4 py-12 max-w-5xl flex-grow flex items-center">
+      <div class="container mx-auto px-4 py-12 max-w-5xl flex-grow flex items-center section-content">
         <TechSection>
         <TechText variant="h2">
           Projects
@@ -132,3 +132,31 @@ import { projects } from '../data/projects';
     </section>
   </div>
 </Layout>
+
+<script>
+  // Animate sections on scroll
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const content = entry.target.querySelector('.section-content');
+        if (content) {
+          if (entry.isIntersecting) {
+            content.classList.add('visible');
+          } else {
+            content.classList.remove('visible');
+          }
+        }
+      });
+    },
+    {
+      threshold: 0.2, // Trigger when 20% visible
+    }
+  );
+
+  // Observe all sections
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-section]').forEach((section) => {
+      observer.observe(section);
+    });
+  });
+</script>
