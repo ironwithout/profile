@@ -63,15 +63,17 @@ const skills = [
     <div class="container mx-auto px-4 py-12 max-w-5xl">
       
       <!-- Page header -->
-      <div class="mb-12 font-mono">
+      <TechSection>
         <div class="text-text-dim text-sm mb-2 uppercase tracking-wider">Experience</div>
-        <h1 class="text-4xl text-text-primary mb-4 font-semibold">
+        <TechText variant="h1">
           Professional History
-        </h1>
-        <div class="text-text-muted text-sm">
-          <span class="text-accent-primary font-semibold">{experiences.length}</span> positions
+        </TechText>
+        <div class="tech-indent space-y-2">
+          <TechText variant="body">
+            <span class="text-accent-primary font-semibold">{experiences.length}</span> positions
+          </TechText>
         </div>
-      </div>
+      </TechSection>
 
       <!-- Experience list -->
       <div class="mb-16">
@@ -81,9 +83,8 @@ const skills = [
       </div>
 
       <!-- Skills grid -->
-      <div class="border-t-2 border-tech-border pt-12 font-mono text-sm">
-        <TechSection title="Skills & Technologies" bulletType="secondary">
-          <div class="tech-indent grid grid-cols-1 md:grid-cols-2 gap-8">
+      <TechSection title="Skills & Technologies" bulletType="secondary" class="border-t-2 border-tech-border pt-12">
+        <div class="tech-indent grid grid-cols-1 md:grid-cols-2 gap-8">
             {skills.map(({ category, items }) => (
               <div>
                 <TechText variant="h3">{category}:</TechText>
@@ -95,8 +96,7 @@ const skills = [
               </div>
             ))}
           </div>
-        </TechSection>
-      </div>
+      </TechSection>
 
       <!-- Footer -->
       <div class="mt-16 pt-8 border-t border-tech-border font-mono text-xs text-text-dim">

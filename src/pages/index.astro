@@ -16,7 +16,7 @@ import TechTag from '../components/TechTag.astro';
         <TechText variant="h1">
           Miguel Sánchez
         </TechText>
-        <div class="tech-indent space-y-4">
+        <div class="tech-indent space-y-2">
           <p class="text-text-muted">
             Software Engineer <span class="text-text-dim">|</span> Full Stack Developer <span class="text-text-dim">|</span> Problem Solver
           </p>
@@ -61,9 +61,8 @@ import TechTag from '../components/TechTag.astro';
       </TechSection>
 
       <!-- Contact/Social Links -->
-      <section class="font-mono text-sm border-t-2 border-tech-border pt-12">
-        <TechSection title="Connect" bulletType="success">
-          <div class="tech-indent flex flex-col gap-3">
+      <TechSection title="Connect" bulletType="success" class="border-t-2 border-tech-border pt-12">
+        <div class="tech-indent flex flex-col gap-3">
             <TechLink href="https://github.com/ironwithout" external arrow>
               github.com/ironwithout
             </TechLink>
@@ -71,8 +70,7 @@ import TechTag from '../components/TechTag.astro';
               linkedin.com/in/miguel-sanchez-devops
             </TechLink>
           </div>
-        </TechSection>
-      </section>
+      </TechSection>
     </div>
   </div>
 </Layout>
