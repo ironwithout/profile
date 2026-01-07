@@ -3,24 +3,20 @@
  * Reusable text component with styling variants
  * Usage: <Text variant="h1">Your text</Text>
  */
-type Variant = 'h1' | 'h2' | 'h3' | 'body' | 'muted' | 'tree-branch';
+type Variant = 'h1' | 'h2' | 'h3' | 'body';
 
 interface Props {
-  variant?: Variant;
+  variant: Variant;
   class?: string;
 }
 
-const props = Astro.props as Props;
-const variant = props.variant ?? 'body';
-const className = props.class ?? '';
+const { variant, class: className = '' } = Astro.props;
 
 const variantClasses: Record<Variant, string> = {
   h1: 'tech-h1',
   h2: 'tech-h2',
   h3: 'tech-h3',
   body: 'tech-text',
-  muted: 'tech-text-muted',
-  'tree-branch': 'tech-tree-branch tech-text',
 };
 
 const classes = `${variantClasses[variant]} ${className}`;
@@ -30,5 +26,3 @@ const classes = `${variantClasses[variant]} ${className}`;
 {variant === 'h2' && <h2 class={classes}><slot /></h2>}
 {variant === 'h3' && <h3 class={classes}><slot /></h3>}
 {variant === 'body' && <p class={classes}><slot /></p>}
-{variant === 'muted' && <p class={classes}><slot /></p>}
-{variant === 'tree-branch' && <div class={classes}><slot /></div>}

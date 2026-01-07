@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Animation & Layout Variables */
+    --expandable-max-height: 1000px;
+    --scroll-dot-size: 10px;
+    --section-translate-y: 30px;
+  }
+
   body {
     @apply bg-tech-bg text-text-primary font-mono;
   }
@@ -12,7 +19,7 @@
 @layer utilities {
   .section-content {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(var(--section-translate-y));
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
   
@@ -24,20 +31,6 @@
 
 /* Tech Design System - Minimalistic & High Contrast */
 @layer components {
-  /* Bullet Points & Status Indicators */
-  .tech-bullet {
-    @apply text-accent-primary mt-1 flex-shrink-0;
-  }
-  
-  .tech-bullet-success {
-    @apply text-accent-success mt-1 flex-shrink-0;
-  }
-  
-  /* Section Headers */
-  .tech-section-header {
-    @apply flex items-center gap-2 mb-6;
-  }
-  
   /* Card/Surface Components */
   .tech-card {
     @apply bg-tech-surface border border-tech-border rounded-lg p-6 hover:border-tech-hover transition-colors;
@@ -47,11 +40,7 @@
   .tech-tag {
     @apply px-2 py-1 bg-tech-surface text-accent-primary rounded border border-tech-border hover:border-accent-primary transition-colors text-xs uppercase tracking-wider;
   }
-  
-  .tech-tag-muted {
-    @apply px-2 py-1 bg-tech-surface text-text-secondary rounded border border-tech-border hover:border-tech-hover hover:text-text-primary transition-colors text-xs uppercase tracking-wider;
-  }
-  
+
   /* Links */
   .tech-link {
     @apply text-text-muted hover:text-accent-primary transition-colors;
@@ -82,23 +71,7 @@
   .tech-text {
     @apply text-text-secondary leading-relaxed;
   }
-  
-  .tech-text-muted {
-    @apply text-text-muted leading-relaxed;
-  }
-  
-  /* Command Prompt - Simplified */
-  .tech-prompt::before {
-    content: '';
-    @apply text-accent-success;
-  }
-  
-  /* Tree branch characters */
-  .tech-tree-branch::before {
-    content: '┖ ';
-    @apply text-text-dim;
-  }
-  
+
   /* Status indicators */
   .status-active {
     @apply text-accent-success;

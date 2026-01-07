@@ -19,8 +19,8 @@ const { sections } = Astro.props;
   }
   
   .scroll-dot {
-    width: 10px;
-    height: 10px;
+    width: var(--scroll-dot-size);
+    height: var(--scroll-dot-size);
     border-radius: 50%;
     background-color: rgb(75 85 99);
     cursor: pointer;
@@ -78,41 +78,9 @@ const { sections } = Astro.props;
   {sections.map((section, index) => (
     <button
       class="scroll-dot"
-      data-section-index={index}
+      data-scroll-to={index}
       data-label={section}
       aria-label={`Go to ${section}`}
-      onclick={`document.querySelector('[data-section="${index}"]').scrollIntoView({ behavior: 'smooth' })`}
     />
   ))}
 </nav>
-
-<script>
-  // Track active section using Intersection Observer
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const sectionIndex = entry.target.getAttribute('data-section');
-          // Update active dot
-          document.querySelectorAll('.scroll-dot').forEach((dot, index) => {
-            if (index === parseInt(sectionIndex || '0')) {
-              dot.classList.add('active');
-            } else {
-              dot.classList.remove('active');
-            }
-          });
-        }
-      });
-    },
-    {
-      threshold: 0.5, // Section is "active" when 50% visible
-    }
-  );
-
-  // Observe all sections
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('[data-section]').forEach((section) => {
-      observer.observe(section);
-    });
-  });
-</script>

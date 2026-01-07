@@ -1,164 +1,169 @@
 # Copilot Instructions for Profile Website
 
 ## Project Overview
-Static personal profile website built with **Astro 4.0** for content-first performance. Ships minimal JavaScript, leverages static site generation, and deploys via multi-stage Docker build to nginx.
+Single-page portfolio built with **Astro 4.0**, TypeScript, and Tailwind CSS. Minimal JavaScript, snap-scroll sections, Docker deployment ready.
 
-**⚠️ Security Note**: This is a public repository. Never commit secrets, API keys, or credentials. Use `.env` files (already in `.gitignore`) and GitHub Secrets for CI/CD workflows.
+**⚠️ Security**: This is public. Never commit secrets. Use `.env` (gitignored) and GitHub Secrets for CI/CD.
 
-## Architecture & Key Patterns
+## Architecture
 
-### Content Collections (Content System)
-- Blog posts live in `src/content/blog/*.md` with frontmatter validation via Zod schema in `src/content/config.ts`
-- Schema enforces: `title`, `description`, `pubDate` (Date), `author` (default), `tags` (array)
-- Access via `getCollection('blog')` in page components (see `src/pages/blog/index.astro`)
-- Dynamic routes use `getStaticPaths()` to generate pages at build time (see `src/pages/blog/[slug].astro`)
+### Single Page Structure
+- **One page** (`src/pages/index.astro`) with 4 snap-scroll sections: Introduction, Career, Skills, Projects
+- **Visual navigation**: Fixed scroll indicator dots track active section
+- **Content source**: All data in TypeScript files (`src/data/`) - no CMS, no markdown content
 
-### Component Architecture
-- **Layout wrapper**: `src/layouts/Layout.astro` - single layout for all pages, includes Header/Footer and SEO meta tags
-- **Reusable components**: All in `src/components/` (Header, Footer, ProjectCard)
-- **Component props**: Use TypeScript interfaces in frontmatter for type safety (see ProjectCard example)
-- **Routing**: File-based in `src/pages/` - `index.astro` (home), `professional.astro`, `personal.astro`, `blog/` directory
+### Component System (src/components/)
+**Core Layout:**
+- `PageSection.astro` - Snap-scroll wrapper (handles `data-section` attribute for observers)
+- `Section.astro` - Content container (simplified, no props needed)
 
-### Styling Conventions
-- **Tailwind utility-first**: All styling via Tailwind classes, no custom CSS except global base in `src/styles/global.css`
-- **Dark mode**: Use `dark:` prefix for dark mode variants (implemented throughout)
-- **Common patterns**: 
-  - Container: `container mx-auto px-4`
-  - Cards: `bg-gray-50 dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700`
-  - Links: `text-blue-600 dark:text-blue-400 hover:underline`
-- **Prose styling**: Blog content uses Tailwind Typography with customized dark mode prose classes (see `[slug].astro`)
+**UI Components:**
+- `Text.astro` - Typography with variants: `h1`, `h2`, `h3`, `body` (required `variant` prop)
+- `Tag.astro` - Tech stack badges (no props)
+- `Link.astro` - Links with optional `arrow` and `external` props
+- `ExperienceCard.astro` - Expandable cards with aria-controls (uses data attributes for event delegation)
+- `ProjectCard.astro` - Project display with optional `link`/`github`
+- `ScrollIndicator.astro` - Fixed navigation dots
 
-### Current Path Highlighting
-Navigation uses `Astro.url.pathname` comparison with `class:list` directive for active state styling (see `Header.astro`)
+**Section Pages** (`src/sections/index/`): Each wraps content in `PageSection` → `Section` → specific layout
 
-## Development Workflows
+### Interaction Pattern - Event Delegation
+**Key architectural decision**: All interactive elements use data attributes + event delegation, not inline handlers.
 
-### Local Development
-```bash
-npm run dev        # Dev server on localhost:4321
-npm run build      # Type-check with astro check, then build to dist/
-npm run preview    # Preview production build locally
-```
-
-### Docker Deployment
-- **Multi-stage build**: Node builder → nginx production image
-- **Build artifacts**: `dist/` directory copied to `/usr/share/nginx/html`
-- **Nginx config**: Custom `nginx.conf` with gzip, static asset caching, HTML fallback routing
-- **Ports**: Container exposes 80, docker-compose maps to 3000
-- **Command**: `docker-compose up --build` (rebuilds image and starts container)
-
-## Customizing Site Content
-
-### Update Personal Branding
-1. **Name & Links**: Update in `src/components/Header.astro` (logo text) and `src/components/Footer.astro` (social links)
-2. **Bio & Skills**: Edit `src/pages/index.astro` - hero section, skills lists, linkedin
-3. **Site metadata**: Change `site` URL in `astro.config.mjs` for production domain
-4. **Colors**: Modify `tailwind.config.mjs` theme to customize blue accent colors (currently `blue-600/400`)
-5. **Favicon**: Replace `public/favicon.svg` with your own logo
-
-### Environment Variables (if needed)
 ```typescript
-// Access in .astro files:
-const apiKey = import.meta.env.PUBLIC_API_KEY;  // Exposed to client
-const secret = import.meta.env.SECRET_KEY;      // Server-only
-
-// Create .env file (already gitignored):
-PUBLIC_API_KEY=xxx
-SECRET_KEY=yyy
+// src/scripts/experienceCards.ts
+document.addEventListener('click', (event) => {
+  const button = event.target.closest('[data-experience-toggle]');
+  // Single listener handles all cards
+});
 ```
 
-## Adding Content
+**Why**: CSP-compliant, testable, single listener per feature (not per element).
 
-### New Blog Posts
-1. Create `src/content/blog/your-post.md`
-2. Add required frontmatter (copy from existing posts):
-   ```yaml
-   ---
-   title: "Post Title"
-   description: "Brief description"
-   pubDate: 2026-01-04
-   tags: ["tag1", "tag2"]
-   ---
-   ```
-3. Write content in markdown below frontmatter
-4. Posts auto-appear on `/blog` index sorted by date descending
+**Components using this**:
+- `ExperienceCard.astro`: `data-experience-toggle={cardId}` + `aria-expanded`
+- `ScrollIndicator.astro`: `data-scroll-to={index}` for navigation
 
-### New Projects
-Edit `professional.astro` or `personal.astro`, add to `projects` array:
+### Consolidated Intersection Observer
+**Critical pattern**: Single observer handles both animations AND navigation tracking.
+
+```typescript
+// src/scripts/scrollAnimation.ts - exports initScrollObserver()
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    animationCallback(entry);    // Fade-in animations
+    navigationCallback(entry);   // Update active dot
+  });
+}, { threshold: [0.2, 0.5] });
+```
+
+**Why**: Avoid duplicate observers. One observer, multiple callbacks.
+
+**⚠️ Don't create new observers** for section tracking - extend the callback array in `scrollAnimation.ts`.
+
+### Styling Architecture
+
+**Tech Theme Design System** (`src/styles/global.css`):
+```css
+/* CSS Custom Properties (root level) */
+--expandable-max-height: 1000px;
+--scroll-dot-size: 10px;
+--section-translate-y: 30px;
+
+/* Semantic classes (tech-prefixed) */
+.tech-card, .tech-tag, .tech-link, .tech-link-arrow
+.tech-h1, .tech-h2, .tech-h3, .tech-text
+.status-active, .status-inactive
+```
+
+**Tailwind Tokens** (`tailwind.config.mjs`):
 ```javascript
-{
-  title: "Project Name",
-  description: "Description text",
-  technologies: ["Tech1", "Tech2"],
-  link: "https://...",  // optional
-  github: "https://...", // optional
+colors: {
+  tech: { bg, surface, border, hover },
+  accent: { primary, secondary, success },
+  text: { primary, secondary, muted, dim }
 }
 ```
 
-### New Pages
-Create `.astro` file in `src/pages/`, wrap in `<Layout>`, auto-routes by filename
-Testing Strategy
+**⚠️ Use Tailwind tokens in classes**: `bg-tech-surface` NOT CSS class names like `bg-tech-card`.
 
-### Type Checking (Current)
+## Data Management
+
+**All content in `src/data/`** (TypeScript, not markdown):
+- `introduction.ts` - Name + description
+- `career.ts` - Experience array with interface `Experience`
+- `skills.ts` - Object with category keys
+- `projects.ts` - Project array with interface `Project`
+
+**To add content**: Edit these files directly. No API, no database.
+
+## Development Workflows
+
 ```bash
-npm run build  # Runs `astro check` + build - catches TypeScript/prop errors
+npm run dev      # localhost:4321
+npm run build    # Runs astro check (type safety) + build
+npm run preview  # Test prod build locally
 ```
 
-### Recommended Testing Stack (Industry Standard for Astro)
-```bash
-# Unit/Component Testing
-npm install -D vitest @vitest/ui
-npm install -D @astrojs/test-utils  # For testing Astro components
+**Type Checking**: `astro check` runs on build. Fix all errors before committing.
 
-# E2E Testing (recommended for static sites)
-npm install -D @playwright/test     # Industry standard for E2E
-# OR
-npm install -D cypress             # Alternative with great DX
+**Docker**:
+```bash
+docker-compose up --build  # Port 3000
 ```
 
-**Testing Priorities for Static Sites**:
-1. Type checking (already in place via `astro check`)
-2. E2E tests for critical user flows (navigation, blog post rendering)
-3. Visual regression tests if design consistency is critical
-4. Unit tests only for complex logic/utilities (Astro components render at build time)
+## Common Patterns
 
-## CI/CD Workflows
+### Creating Components
+```astro
+---
+interface Props {
+  required: string;
+  optional?: boolean;
+}
+const { required, optional = false } = Astro.props;
+---
+```
 
-### GitHub Actions
-Two workflows are configured:
+**Props with defaults MUST be optional** (`?:` in interface).
 
-**1. PR Checks** ([`.github/workflows/pr-checks.yml`](.github/workflows/pr-checks.yml))
-- Runs on every pull request to `main`
-- Executes type checking (`astro check`)
-- Builds Docker image
-- Runs smoke test (starts container, curls homepage)
-- Does not push to ECR
+### Adding Sections
+1. Create data in `src/data/`
+2. Create section in `src/sections/index/`
+3. Import in `src/pages/index.astro`
+4. Update `<ScrollIndicator sections={[...]}` array
 
-**2. Deploy to ECR** ([`.github/workflows/deploy.yml`](.github/workflows/deploy.yml))
-- Runs on push to `main` branch
-- Performs all PR checks
-- Authenticates with AWS
-- Pushes to Amazon ECR with commit SHA and `latest` tags
+### Using Text Component
+```astro
+<Text variant="h2">Career</Text>  <!-- variant required -->
+<Text variant="body" class="mt-4">Description</Text>  <!-- class optional -->
+```
 
-**Required GitHub Secrets** (Settings → Secrets → Actions):
-- `AWS_ACCESS_KEY_ID`: IAM user access key with ECR permissions
-- `AWS_SECRET_ACCESS_KEY`: IAM user secret key
-- `AWS_REGION`: AWS region for ECR (e.g., `us-east-1`)
+### CSS Variables Over Magic Numbers
+```css
+/* ✅ Good */
+max-height: var(--expandable-max-height);
 
-### Build Performance
-- Current build: ~30-60s (including Docker multi-stage)
-- `node_modules` cached via `actions/cache` in Node.js setup
-- Multi-stage Docker build keeps final image <50MB
+/* ❌ Bad */
+max-height: 1000px;
+```
 
-## Configuration Files
+## Known Limitations
+- Section names in `ScrollIndicator` are hardcoded (manual sync required)
+- No dark mode toggle (single theme)
+- Single page only (no routing)
+- `location` in Experience is required but displays conditionally (historical)
 
-### Astro Config (`astro.config.mjs`)
-- Minimal config: Tailwind integration, static output mode
-- Update `site` URL for production deployment (used for sitemap/canonical URLs)
+## CI/CD
+- **PR Checks**: Type check + Docker build + smoke test
+- **Deploy**: Pushes to AWS ECR on merge to `main`
+- **Secrets needed**: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`
 
-### Tailwind Config (`tailwind.config.mjs`)
-- Content paths configured for all Astro file types
-- Extend `theme` for custom colors/spacing (currently uses defaults)
+## File You Might See But Shouldn't Use
+- `src/components/TechSection.astro` - **Unused duplicate**, ignore it
+- Any reference to blog posts or content collections - infrastructure exists but no content
+  - `text.*` - Text hierarchy from primary to dim
+- Mono font stack configured for tech aesthetic
 
 ### TypeScript Config
 - Extends Astro strict preset
@@ -166,11 +171,23 @@ Two workflows are configured:
 
 ## Docker Optimization Notes
 - `.dockerignore` excludes `node_modules`, `dist`, logs to reduce context size
-- Nginx serves static files efficiently with 1-year cache headers for assets
-- HTML files use fallback routing (`try_files $uri $uri/ $uri.html`) for clean URLs
+- **TypeScript**: Always define interfaces for component props (required for Astro type checking)
+- **Props destructuring**: Destructure `Astro.props` immediately in frontmatter with defaults
+- **Conditional rendering**: Use optional chaining: `{link && <a href={link}>...`
+- **Responsive layout**: Mobile-first with `md:` breakpoint (768px)
+- **Spacing system**: Consistent vertical rhythm with `mb-4`, `mb-8`, `mb-16`
+- **Color usage**: 
+  - Use Tailwind color tokens: `bg-tech-surface`, `text-text-primary`, `border-tech-border`
+  - NOT the CSS class names directly (e.g., don't use `bg-tech-card`)
+- **Component composition**: Build complex layouts by composing small reusable components
+- **Animation**: Sections fade in on scroll via Intersection Observer
+- **Icons**: Use inline SVG for icons (see expand icon in ExperienceCard)
 
-## Common Patterns to Follow
-- TypeScript interfaces for component props (required for Astro type checking)
+## Known Technical Debt
+- Inline onclick handlers in ExperienceCard and ScrollIndicator (should migrate to external event handlers)
+- Duplicate Intersection Observer logic (scrollAnimation.ts and ScrollIndicator.astro)
+- Magic numbers in CSS (should use CSS custom properties)
+- Some placeholder content in introduction.tsype checking)
 - Destructure Astro.props immediately in frontmatter
 - Use optional chaining for conditional content (`{link && <a href={link}>...`)
 - Responsive grids: `grid grid-cols-1 md:grid-cols-2` pattern throughout

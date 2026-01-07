@@ -1,18 +1,10 @@
 ---
 /**
  * Reusable tag component
- * Usage: <Tag variant="primary">React</Tag>
+ * Usage: <Tag>React</Tag>
  */
-interface Props {
-  variant?: 'primary' | 'muted';
-  class?: string;
-}
-
-const { variant = 'primary', class: className = '' } = Astro.props;
-
-const variantClass = variant === 'primary' ? 'tech-tag' : 'tech-tag-muted';
 ---
 
-<span class={`${variantClass} ${className}`}>
+<span class={`tech-tag`}>
   <slot />
 </span>

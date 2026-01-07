@@ -9,13 +9,12 @@ export default {
           bg: '#0a0a0f',      // bg-tech-bg
           surface: '#111118', // bg-tech-surface
           border: '#1f2937',  // border-tech-border
-          hover: '#374151',   // hover:bg-tech-hover
+          hover: '#374151',   // hover:border-tech-hover
         },
         accent: {
           primary: '#22d3ee',   // text-accent-primary (cyan)
           secondary: '#3b82f6', // text-accent-secondary (blue)
           success: '#10b981',   // text-accent-success (emerald/green)
-          warning: '#f59e0b',   // text-accent-warning (amber)
         },
         text: {
           primary: '#f9fafb',   // text-text-primary (white)

@@ -3,28 +3,8 @@
  * Reusable section wrapper
  * Usage: Wrap any section content to get consistent styling
  */
-interface Props {
-  title?: string;
-  bulletType?: 'primary' | 'success' | 'secondary';
-  class?: string;
-}
-
-const { title, bulletType = 'primary', class: className = '' } = Astro.props;
-
-const bulletColors = {
-  primary: 'text-accent-primary',
-  success: 'text-accent-success',
-  secondary: 'text-accent-secondary',
-};
 ---
 
-<section class={`mb-16 font-mono text-sm ${className}`}>
-  {title && (
-    <div class="tech-section-header">
-      <span class={`${bulletColors[bulletType]}`}>●</span>
-      <span class="text-text-primary font-semibold">{title}</span>
-    </div>
-  )}
-  
+<section class={`mb-16 font-mono text-sm`}>
   <slot />
 </section>
