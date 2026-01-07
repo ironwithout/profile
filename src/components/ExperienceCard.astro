@@ -1,0 +1,103 @@
+---
+import Text from './Text.astro';
+import Tag from './Tag.astro';
+
+interface Props {
+  company: string;
+  role: string;
+  period: string;
+  location: string;
+  description: string;
+  achievements: string[];
+  technologies: string[];
+  status: 'current' | 'completed';
+  index: number;
+}
+
+const { company, role, period, location, description, achievements, technologies, status = 'completed', index } = Astro.props;
+const cardId = `experience-${index}`;
+---
+
+<style>
+  .expandable-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out, margin-top 0.3s ease-out;
+  }
+  
+  .expandable-content.expanded {
+    max-height: var(--expandable-max-height);
+    opacity: 1;
+    margin-top: 1rem;
+  }
+</style>
+
+<div class="tech-card mb-6">
+  <!-- Card Header - Always visible, clickable -->
+  <button 
+    class="w-full text-left cursor-pointer"
+    data-experience-toggle={cardId}
+    type="button"
+    aria-expanded="false"
+    aria-controls={cardId}
+  >
+    <div class="flex items-start justify-between gap-4">
+      <div class="flex items-start gap-3 flex-1">
+        <span class={`mt-1 flex-shrink-0 ${status === 'current' ? 'status-active' : 'status-inactive'}`}>●</span>
+        <div class="flex-1">
+          <div class="flex items-baseline gap-3 flex-wrap mb-1">
+            <span class="text-text-primary font-semibold text-base">{role}</span>
+            <span class="text-accent-secondary">@{company}</span>
+          </div>
+          <div class="flex items-center gap-3 text-sm">
+            <span class="text-text-dim">{period}</span>
+            <span class="text-text-dim">•</span>
+            <span class="text-text-dim">{location}</span>
+          </div>
+        </div>
+      </div>
+      <svg 
+        class="expand-icon w-5 h-5 text-accent-primary transition-transform flex-shrink-0 mt-1"
+        fill="none" 
+        stroke="currentColor" 
+        viewBox="0 0 24 24"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </div>
+  </button>
+
+  <!-- Expandable Content -->
+  <div id={cardId} class="expandable-content">
+    <div class="pt-4 border-t border-tech-border space-y-4">
+      <!-- Description -->
+      <Text variant="body">
+        {description}
+      </Text>
+
+      <!-- Achievements -->
+      {achievements && achievements.length > 0 && (
+        <div class="space-y-2">
+          <span class="text-text-dim text-xs uppercase tracking-wider">Key Achievements:</span>
+          {achievements.map((achievement) => (
+            <div class="flex items-start gap-3 text-text-secondary">
+              <span class="text-accent-success flex-shrink-0 mt-1">●</span>
+              <span class="leading-relaxed">{achievement}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <!-- Technologies -->
+      <div>
+        <span class="text-text-dim text-xs uppercase tracking-wider block mb-2">Tech Stack:</span>
+        <div class="flex flex-wrap gap-2">
+          {technologies.map((tech) => (
+            <Tag>{tech}</Tag>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

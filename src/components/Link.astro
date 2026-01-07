@@ -1,0 +1,18 @@
+---
+/**
+ * Reusable link component
+ * Usage: <Link href="...">Link text</Link>
+ */
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<a 
+  href={href} 
+  class={`tech-link-arrow`}
+>
+  <slot />
+</a>

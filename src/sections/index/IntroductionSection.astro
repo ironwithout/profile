@@ -1,0 +1,25 @@
+---
+import PageSection from '../../components/PageSection.astro';
+import Section from '../../components/Section.astro';
+import Text from '../../components/Text.astro';
+import { introduction } from '../../data/introduction';
+
+interface Props {
+  sectionIndex: number;
+}
+
+const { sectionIndex } = Astro.props;
+---
+
+<PageSection sectionIndex={sectionIndex}>
+  <Section>
+    <Text variant="h1">
+      {introduction.name}
+    </Text>
+    <div class="space-y-2">
+      <Text variant="body" class="max-w-3xl">
+        {introduction.description}
+      </Text>
+    </div>
+  </Section>
+</PageSection>

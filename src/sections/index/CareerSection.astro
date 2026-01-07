@@ -1,0 +1,34 @@
+---
+import PageSection from '../../components/PageSection.astro';
+import Section from '../../components/Section.astro';
+import Text from '../../components/Text.astro';
+import ExperienceCard from '../../components/ExperienceCard.astro';
+import { experiences } from '../../data/career';
+
+interface Props {
+  sectionIndex: number;
+}
+
+const { sectionIndex } = Astro.props;
+---
+
+<PageSection sectionIndex={sectionIndex}>
+  <Section>
+    <Text variant="h2">
+      Career
+    </Text>
+    <div class="mt-6 relative">
+      <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-tech-border transform -translate-x-1/2"></div>
+      {experiences.map((exp, index) => (
+        <div class={`relative mb-12 flex ${index % 2 === 0 ? 'justify-end' : 'justify-start'}`}>
+          <div class={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
+            <ExperienceCard 
+              {...exp}
+              index={index}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </Section>
+</PageSection>

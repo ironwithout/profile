@@ -1,0 +1,36 @@
+---
+import PageSection from '../../components/PageSection.astro';
+import Section from '../../components/Section.astro';
+import Text from '../../components/Text.astro';
+import { skills } from '../../data/skills';
+
+interface Props {
+  sectionIndex: number;
+}
+
+const { sectionIndex } = Astro.props;
+---
+
+<PageSection sectionIndex={sectionIndex}>
+  <Section>
+    <Text variant="h2">
+      Skills & Technologies
+    </Text>
+    <div class="mt-8 space-y-8">
+      {Object.entries(skills).map(([category, techs]) => (
+        <div>
+          <Text variant="h3" class="mb-4">
+            {category}
+          </Text>
+          <div class="flex flex-wrap gap-3">
+            {techs.map(tech => (
+              <span class="px-4 py-2 bg-tech-surface border border-tech-border rounded-lg text-text-primary hover:border-accent-primary transition-colors">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </Section>
+</PageSection>

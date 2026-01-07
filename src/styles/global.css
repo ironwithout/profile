@@ -3,7 +3,81 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Animation & Layout Variables */
+    --expandable-max-height: 1000px;
+    --scroll-dot-size: 10px;
+    --section-translate-y: 30px;
+  }
+
   body {
-    @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+    @apply bg-tech-bg text-text-primary font-mono;
+  }
+}
+
+/* Snap Scroll Animations */
+@layer utilities {
+  .section-content {
+    opacity: 0;
+    transform: translateY(var(--section-translate-y));
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .section-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tech Design System - Minimalistic & High Contrast */
+@layer components {
+  /* Card/Surface Components */
+  .tech-card {
+    @apply bg-tech-surface border border-tech-border rounded-lg p-6 hover:border-tech-hover transition-colors;
+  }
+  
+  /* Technology Tags */
+  .tech-tag {
+    @apply px-2 py-1 bg-tech-surface text-accent-primary rounded border border-tech-border hover:border-accent-primary transition-colors text-xs uppercase tracking-wider;
+  }
+
+  /* Links */
+  .tech-link {
+    @apply text-text-muted hover:text-accent-primary transition-colors;
+  }
+  
+  .tech-link-arrow {
+    @apply text-text-muted hover:text-accent-primary transition-colors;
+  }
+  
+  .tech-link-arrow::before {
+    content: '→ ';
+  }
+  
+  /* Typography */
+  .tech-h1 {
+    @apply text-4xl mb-4 text-text-primary uppercase tracking-tight;
+  }
+  
+  .tech-h2 {
+    @apply text-2xl mb-3 text-text-primary font-semibold uppercase tracking-wide;
+  }
+  
+  .tech-h3 {
+    @apply text-lg mb-2 text-accent-primary font-semibold uppercase tracking-wide;
+  }
+  
+  /* Text Variants */
+  .tech-text {
+    @apply text-text-secondary leading-relaxed;
+  }
+
+  /* Status indicators */
+  .status-active {
+    @apply text-accent-success;
+  }
+  
+  .status-inactive {
+    @apply text-accent-secondary;
   }
 }

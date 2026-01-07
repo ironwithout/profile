@@ -1,6 +1,4 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -21,10 +19,8 @@ const { title, description = 'My professional profile and projects' } = Astro.pr
     <title>{title}</title>
   </head>
   <body>
-    <Header />
     <main class="min-h-screen">
       <slot />
     </main>
-    <Footer />
   </body>
 </html>
