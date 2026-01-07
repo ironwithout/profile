@@ -12,9 +12,9 @@ import { projects } from '../data/projects';
 
 <Layout title="Miguel Sánchez - Professional Profile">
   <ScrollIndicator sections={['Introduction', 'Career', 'Skills', 'Projects']} />
-  
+
   <div class="snap-y snap-mandatory overflow-y-scroll h-screen bg-tech-bg">
-    
+
     <!-- Introduction Section -->
     <section class="snap-start min-h-screen flex items-center" data-section="0">
       <div class="container mx-auto px-4 py-12 max-w-5xl section-content">
@@ -40,7 +40,7 @@ import { projects } from '../data/projects';
           </TechText>
           <div class="mt-6 relative">
             <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-tech-border transform -translate-x-1/2"></div>
-            
+
             {experiences.map((exp, index) => (
               <div class={`relative mb-12 flex ${index % 2 === 0 ? 'justify-end' : 'justify-start'}`}>
                 <div class={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
@@ -97,7 +97,7 @@ import { projects } from '../data/projects';
         </div>
       </TechSection>
       </div>
-      
+
       <!-- Footer -->
       <div class="pb-8 text-center text-text-dim text-sm font-mono">
         <p><span class="text-accent-primary">●</span> &copy; {new Date().getFullYear()} {profile.name}</p>
