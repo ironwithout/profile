@@ -1,29 +1,18 @@
 ---
 /**
  * Reusable link component
- * Usage: <Link href="..." arrow>Link text</Link>
+ * Usage: <Link href="...">Link text</Link>
  */
 interface Props {
   href: string;
-  arrow?: boolean;
-  external?: boolean;
-  class?: string;
 }
 
-const { href, arrow = false, external = false, class: className = '' } = Astro.props;
-
-const externalProps = external ? {
-  target: '_blank',
-  rel: 'noopener noreferrer'
-} : {};
-
-const linkClass = arrow ? 'tech-link-arrow' : 'tech-link';
+const { href } = Astro.props;
 ---
 
 <a 
   href={href} 
-  class={`${linkClass} ${className}`}
-  {...externalProps}
+  class={`tech-link-arrow`}
 >
   <slot />
 </a>
