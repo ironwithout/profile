@@ -62,22 +62,21 @@ const skills = [
   <div class="min-h-screen bg-terminal-bg text-text-secondary">
     <div class="container mx-auto px-4 py-12 max-w-5xl">
       
-      <!-- Terminal-style header -->
+      <!-- Page header -->
       <div class="mb-12 font-mono">
-        <div class="text-text-dim text-sm mb-2">~/experience</div>
+        <div class="text-text-dim text-sm mb-2 uppercase tracking-wider">Experience</div>
         <h1 class="text-4xl text-text-primary mb-4 font-semibold">
-          <span class="text-accent-success">$</span> cat professional_history.log
+          Professional History
         </h1>
         <div class="text-text-muted text-sm">
-          Listed <span class="text-accent-primary font-semibold">{experiences.length}</span> positions 
-          <span class="text-text-dim">(Ctrl+F to search)</span>
+          <span class="text-accent-primary font-semibold">{experiences.length}</span> positions
         </div>
       </div>
 
       <!-- Experience list -->
       <div class="mb-16">
-        {experiences.map(experience => (
-          <ExperienceCard {...experience} />
+        {experiences.map((experience, index) => (
+          <ExperienceCard {...experience} index={index} defaultExpanded={index === 0} />
         ))}
       </div>
 
@@ -102,8 +101,8 @@ const skills = [
       <!-- Footer -->
       <div class="mt-16 pt-8 border-t border-terminal-border font-mono text-xs text-text-dim">
         <div class="flex items-center gap-2">
-          <span class="animate-pulse">▊</span>
-          <span>End of file</span>
+          <span>●</span>
+          <span>Updated regularly</span>
         </div>
       </div>
 

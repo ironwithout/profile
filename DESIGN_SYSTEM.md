@@ -1,7 +1,14 @@
-# Design System Documentation
+# Tech Design System Documentation
 
 ## Overview
-This is a terminal/CLI-inspired design system built with Astro and Tailwind CSS. All components follow a consistent dark theme with cyan/blue/emerald accent colors.
+This is a **Tech-inspired design system** built with Astro and Tailwind CSS, featuring minimalistic design, high contrast, and pixel/dot matrix aesthetics inspired by Nothing's design philosophy. Clean, modern, and professional—perfect for technical portfolios that need to be HR-friendly.
+
+**Key Characteristics:**
+- ● Minimalistic & clean interface
+- ● High contrast for readability
+- ● Pixel/dot matrix aesthetic (● bullets)
+- ● Professional typography
+- ● No technical jargon or terminal commands
 
 ---
 

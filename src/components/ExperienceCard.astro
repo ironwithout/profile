@@ -11,52 +11,83 @@ interface Props {
   achievements: string[];
   technologies: string[];
   status?: 'current' | 'completed';
+  index: number;
+  defaultExpanded?: boolean;
 }
 
-const { company, role, period, location, description, achievements, technologies, status = 'completed' } = Astro.props;
+const { company, role, period, location, description, achievements, technologies, status = 'completed', index, defaultExpanded = false } = Astro.props;
+const cardId = `experience-${index}`;
 ---
 
-<div class="mb-8 font-mono text-sm">
-  <!-- Main entry line -->
-  <div class="flex items-start gap-3 mb-3 group cursor-default">
-    <span class={`mt-1 flex-shrink-0 ${status === 'current' ? 'status-active' : 'status-inactive'}`}>●</span>
-    <div class="flex-1">
-      <div class="flex items-baseline gap-3 flex-wrap">
-        <span class="text-text-primary font-semibold text-base">{role}</span>
-        <span class="text-accent-secondary">@{company}</span>
-        {location && <span class="text-text-dim">({location})</span>}
-      </div>
-    </div>
-    <span class="text-text-dim text-xs whitespace-nowrap">{period}</span>
-  </div>
-
-  <!-- Indented details -->
-  <div class="terminal-indent space-y-3">
-    <!-- Description -->
-    <TerminalText variant="tree-branch">
-      {description}
-    </TerminalText>
-
-    <!-- Achievements -->
-    {achievements && achievements.length > 0 && (
-      <div class="space-y-2 mt-4">
-        {achievements.map((achievement, index) => (
-          <div class="flex items-start gap-3 text-text-secondary hover:text-text-primary transition-colors">
-            <span class="text-accent-success flex-shrink-0 font-bold">
-              {index === achievements.length - 1 ? '┖' : '├'}
-            </span>
-            <span class="leading-relaxed">{achievement}</span>
+<div class="terminal-card mb-6">
+  <!-- Card Header - Always visible, clickable -->
+  <button 
+    class="w-full text-left cursor-pointer"
+    onclick={`document.getElementById('${cardId}').classList.toggle('hidden'); this.querySelector('.expand-icon').classList.toggle('rotate-90')`}
+    type="button"
+  >
+    <div class="flex items-start justify-between gap-4">
+      <div class="flex items-start gap-3 flex-1">
+        <span class={`mt-1 flex-shrink-0 ${status === 'current' ? 'status-active' : 'status-inactive'}`}>●</span>
+        <div class="flex-1">
+          <div class="flex items-baseline gap-3 flex-wrap mb-1">
+            <span class="text-text-primary font-semibold text-base">{role}</span>
+            <span class="text-accent-secondary">@{company}</span>
           </div>
-        ))}
+          <div class="flex items-center gap-3 text-sm">
+            <span class="text-text-dim">{period}</span>
+            {location && (
+              <>
+                <span class="text-text-dim">•</span>
+                <span class="text-text-dim">{location}</span>
+              </>
+            )}
+          </div>
+        </div>
       </div>
-    )}
+      <svg 
+        class={`expand-icon w-5 h-5 text-accent-primary transition-transform flex-shrink-0 mt-1 ${defaultExpanded ? 'rotate-90' : ''}`}
+        fill="none" 
+        stroke="currentColor" 
+        viewBox="0 0 24 24"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </div>
+  </button>
 
-    <!-- Technologies -->
-    <div class="flex flex-wrap gap-2 mt-5 pt-3 border-t border-terminal-border">
-      <span class="text-text-dim mr-1">Stack:</span>
-      {technologies.map((tech) => (
-        <TechTag>{tech}</TechTag>
-      ))}
+  <!-- Expandable Content -->
+  <div id={cardId} class={defaultExpanded ? '' : 'hidden'}>
+    <div class="mt-4 pt-4 border-t border-terminal-border space-y-4">
+      <!-- Description -->
+      <TerminalText variant="body">
+        {description}
+      </TerminalText>
+
+      <!-- Achievements -->
+      {achievements && achievements.length > 0 && (
+        <div class="space-y-2">
+          <span class="text-text-dim text-xs uppercase tracking-wider">Key Achievements:</span>
+          {achievements.map((achievement) => (
+            <div class="flex items-start gap-3 text-text-secondary">
+              <span class="text-accent-success flex-shrink-0 mt-1">●</span>
+              <span class="leading-relaxed">{achievement}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <!-- Technologies -->
+      <div>
+        <span class="text-text-dim text-xs uppercase tracking-wider block mb-2">Tech Stack:</span>
+        <div class="flex flex-wrap gap-2">
+          {technologies.map((tech) => (
+            <TechTag>{tech}</TechTag>
+          ))}
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+

@@ -8,9 +8,9 @@
   }
 }
 
-/* Design System - Reusable Component Classes */
+/* Tech Design System - Minimalistic & High Contrast */
 @layer components {
-  /* Terminal Bullet Points */
+  /* Bullet Points & Status Indicators */
   .terminal-bullet {
     @apply text-accent-primary mt-1 flex-shrink-0;
   }
@@ -19,28 +19,28 @@
     @apply text-accent-success mt-1 flex-shrink-0;
   }
   
-  /* Terminal Borders & Indentation */
+  /* Borders & Indentation */
   .terminal-indent {
     @apply ml-terminal-indent pl-terminal-indent border-l-2 border-terminal-border;
   }
   
-  /* Terminal Section Headers */
+  /* Section Headers */
   .terminal-section-header {
     @apply flex items-center gap-2 mb-6;
   }
   
-  /* Terminal Card/Surface */
+  /* Card/Surface Components */
   .terminal-card {
     @apply bg-terminal-surface border border-terminal-border rounded-lg p-6 hover:border-terminal-hover transition-colors;
   }
   
   /* Technology Tags */
   .tech-tag {
-    @apply px-2 py-1 bg-terminal-surface text-accent-primary rounded border border-terminal-border hover:border-accent-primary transition-colors text-xs;
+    @apply px-2 py-1 bg-terminal-surface text-accent-primary rounded border border-terminal-border hover:border-accent-primary transition-colors text-xs uppercase tracking-wider;
   }
   
   .tech-tag-muted {
-    @apply px-2 py-1 bg-terminal-surface text-text-secondary rounded border border-terminal-border hover:border-terminal-hover hover:text-text-primary transition-colors text-xs;
+    @apply px-2 py-1 bg-terminal-surface text-text-secondary rounded border border-terminal-border hover:border-terminal-hover hover:text-text-primary transition-colors text-xs uppercase tracking-wider;
   }
   
   /* Links */
@@ -56,17 +56,17 @@
     content: '→ ';
   }
   
-  /* Headings */
+  /* Typography */
   .terminal-h1 {
-    @apply text-4xl mb-4 text-text-primary;
+    @apply text-4xl mb-4 text-text-primary uppercase tracking-tight;
   }
   
   .terminal-h2 {
-    @apply text-2xl mb-3 text-text-primary font-semibold;
+    @apply text-2xl mb-3 text-text-primary font-semibold uppercase tracking-wide;
   }
   
   .terminal-h3 {
-    @apply text-lg mb-2 text-accent-primary font-semibold;
+    @apply text-lg mb-2 text-accent-primary font-semibold uppercase tracking-wide;
   }
   
   /* Text Variants */
@@ -78,9 +78,9 @@
     @apply text-text-muted leading-relaxed;
   }
   
-  /* Command Prompt */
+  /* Command Prompt - Simplified */
   .terminal-prompt::before {
-    content: '$ ';
+    content: '';
     @apply text-accent-success;
   }
   
