@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import TerminalSection from '../components/TerminalSection.astro';
-import TerminalText from '../components/TerminalText.astro';
+import TechSection from '../components/TechSection.astro';
+import TechText from '../components/TechText.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 
 const projects = [
@@ -29,22 +29,22 @@ const projects = [
 ---
 
 <Layout title="Personal Projects" description="Side projects and experiments">
-  <div class="min-h-screen bg-terminal-bg">
+  <div class="min-h-screen bg-tech-bg">
     <div class="container mx-auto px-4 py-12 max-w-5xl">
       
       <!-- Hero Section -->
-      <TerminalSection>
+      <TechSection>
         <div class="text-text-dim text-sm mb-2 uppercase tracking-wider">Personal Projects</div>
-        <TerminalText variant="h1">
+        <TechText variant="h1">
           Side Projects
-        </TerminalText>
-        <div class="terminal-indent space-y-4">
-          <TerminalText variant="body">
+        </TechText>
+        <div class="tech-indent space-y-4">
+          <TechText variant="body">
             <span class="text-accent-primary font-semibold">{projects.length}</span> projects
             <span class="text-text-dim"> — Experiments and open-source contributions</span>
-          </TerminalText>
+          </TechText>
         </div>
-      </TerminalSection>
+      </TechSection>
 
       <!-- Projects list -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

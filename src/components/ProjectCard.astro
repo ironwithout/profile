@@ -1,6 +1,6 @@
 ---
-import TerminalText from './TerminalText.astro';
-import TerminalLink from './TerminalLink.astro';
+import TechText from './TechText.astro';
+import TechLink from './TechLink.astro';
 import TechTag from './TechTag.astro';
 
 interface Props {
@@ -14,9 +14,9 @@ interface Props {
 const { title, description, technologies, link, github } = Astro.props;
 ---
 
-<div class="terminal-card">
-  <TerminalText variant="h3">{title}</TerminalText>
-  <TerminalText variant="body" class="mt-2 mb-4">{description}</TerminalText>
+<div class="tech-card">
+  <TechText variant="h3">{title}</TechText>
+  <TechText variant="body" class="mt-2 mb-4">{description}</TechText>
   <div class="flex gap-2">
     {technologies.map(tech => (
         <TechTag>{tech}</TechTag>
@@ -26,14 +26,14 @@ const { title, description, technologies, link, github } = Astro.props;
   {(link || github) && (
     <div class="flex gap-4 pt-2">
       {link && (
-        <TerminalLink href={link} external arrow>
+        <TechLink href={link} external arrow>
           Live Demo
-        </TerminalLink>
+        </TechLink>
       )}
       {github && (
-        <TerminalLink href={github} external arrow>
+        <TechLink href={github} external arrow>
           Source
-        </TerminalLink>
+        </TechLink>
       )}
     </div>
   )}

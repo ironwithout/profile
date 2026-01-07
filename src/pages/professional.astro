@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ExperienceCard from '../components/ExperienceCard.astro';
-import TerminalSection from '../components/TerminalSection.astro';
-import TerminalText from '../components/TerminalText.astro';
+import TechSection from '../components/TechSection.astro';
+import TechText from '../components/TechText.astro';
 import TechTag from '../components/TechTag.astro';
 
 const experiences = [
@@ -59,7 +59,7 @@ const skills = [
 ---
 
 <Layout title="Professional Experience" description="Career history and technical background">
-  <div class="min-h-screen bg-terminal-bg text-text-secondary">
+  <div class="min-h-screen bg-tech-bg text-text-secondary">
     <div class="container mx-auto px-4 py-12 max-w-5xl">
       
       <!-- Page header -->
@@ -81,12 +81,12 @@ const skills = [
       </div>
 
       <!-- Skills grid -->
-      <div class="border-t-2 border-terminal-border pt-12 font-mono text-sm">
-        <TerminalSection title="Skills & Technologies" bulletType="secondary">
-          <div class="terminal-indent grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="border-t-2 border-tech-border pt-12 font-mono text-sm">
+        <TechSection title="Skills & Technologies" bulletType="secondary">
+          <div class="tech-indent grid grid-cols-1 md:grid-cols-2 gap-8">
             {skills.map(({ category, items }) => (
               <div>
-                <TerminalText variant="h3">{category}:</TerminalText>
+                <TechText variant="h3">{category}:</TechText>
                 <div class="flex flex-wrap gap-2">
                   {items.map(item => (
                     <TechTag variant="muted">{item}</TechTag>
@@ -95,11 +95,11 @@ const skills = [
               </div>
             ))}
           </div>
-        </TerminalSection>
+        </TechSection>
       </div>
 
       <!-- Footer -->
-      <div class="mt-16 pt-8 border-t border-terminal-border font-mono text-xs text-text-dim">
+      <div class="mt-16 pt-8 border-t border-tech-border font-mono text-xs text-text-dim">
         <div class="flex items-center gap-2">
           <span>●</span>
           <span>Updated regularly</span>

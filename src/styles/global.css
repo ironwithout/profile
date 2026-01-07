@@ -4,88 +4,88 @@
 
 @layer base {
   body {
-    @apply bg-terminal-bg text-text-primary font-mono;
+    @apply bg-tech-bg text-text-primary font-mono;
   }
 }
 
 /* Tech Design System - Minimalistic & High Contrast */
 @layer components {
   /* Bullet Points & Status Indicators */
-  .terminal-bullet {
+  .tech-bullet {
     @apply text-accent-primary mt-1 flex-shrink-0;
   }
   
-  .terminal-bullet-success {
+  .tech-bullet-success {
     @apply text-accent-success mt-1 flex-shrink-0;
   }
   
   /* Borders & Indentation */
-  .terminal-indent {
-    @apply ml-terminal-indent pl-terminal-indent border-l-2 border-terminal-border;
+  .tech-indent {
+    @apply ml-tech-indent pl-tech-indent border-l-2 border-tech-border;
   }
   
   /* Section Headers */
-  .terminal-section-header {
+  .tech-section-header {
     @apply flex items-center gap-2 mb-6;
   }
   
   /* Card/Surface Components */
-  .terminal-card {
-    @apply bg-terminal-surface border border-terminal-border rounded-lg p-6 hover:border-terminal-hover transition-colors;
+  .tech-card {
+    @apply bg-tech-surface border border-tech-border rounded-lg p-6 hover:border-tech-hover transition-colors;
   }
   
   /* Technology Tags */
   .tech-tag {
-    @apply px-2 py-1 bg-terminal-surface text-accent-primary rounded border border-terminal-border hover:border-accent-primary transition-colors text-xs uppercase tracking-wider;
+    @apply px-2 py-1 bg-tech-surface text-accent-primary rounded border border-tech-border hover:border-accent-primary transition-colors text-xs uppercase tracking-wider;
   }
   
   .tech-tag-muted {
-    @apply px-2 py-1 bg-terminal-surface text-text-secondary rounded border border-terminal-border hover:border-terminal-hover hover:text-text-primary transition-colors text-xs uppercase tracking-wider;
+    @apply px-2 py-1 bg-tech-surface text-text-secondary rounded border border-tech-border hover:border-tech-hover hover:text-text-primary transition-colors text-xs uppercase tracking-wider;
   }
   
   /* Links */
-  .terminal-link {
+  .tech-link {
     @apply text-text-muted hover:text-accent-primary transition-colors;
   }
   
-  .terminal-link-arrow {
+  .tech-link-arrow {
     @apply text-text-muted hover:text-accent-primary transition-colors;
   }
   
-  .terminal-link-arrow::before {
+  .tech-link-arrow::before {
     content: '→ ';
   }
   
   /* Typography */
-  .terminal-h1 {
+  .tech-h1 {
     @apply text-4xl mb-4 text-text-primary uppercase tracking-tight;
   }
   
-  .terminal-h2 {
+  .tech-h2 {
     @apply text-2xl mb-3 text-text-primary font-semibold uppercase tracking-wide;
   }
   
-  .terminal-h3 {
+  .tech-h3 {
     @apply text-lg mb-2 text-accent-primary font-semibold uppercase tracking-wide;
   }
   
   /* Text Variants */
-  .terminal-text {
+  .tech-text {
     @apply text-text-secondary leading-relaxed;
   }
   
-  .terminal-text-muted {
+  .tech-text-muted {
     @apply text-text-muted leading-relaxed;
   }
   
   /* Command Prompt - Simplified */
-  .terminal-prompt::before {
+  .tech-prompt::before {
     content: '';
     @apply text-accent-success;
   }
   
   /* Tree branch characters */
-  .terminal-tree-branch::before {
+  .tech-tree-branch::before {
     content: '┖ ';
     @apply text-text-dim;
   }

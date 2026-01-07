@@ -16,12 +16,12 @@ This is a **Tech-inspired design system** built with Astro and Tailwind CSS, fea
 
 ### Colors (Tailwind Config)
 
-#### Terminal Base Colors
+#### Tech Base Colors
 ```css
-bg-terminal-bg        /* #0a0a0f - Main background */
-bg-terminal-surface   /* #111118 - Card/surface background */
-border-terminal-border /* #1f2937 - Default borders */
-hover:bg-terminal-hover /* #374151 - Hover state for borders */
+bg-tech-bg        /* #0a0a0f - Main background */
+bg-tech-surface   /* #111118 - Card/surface background */
+border-tech-border /* #1f2937 - Default borders */
+hover:bg-tech-hover /* #374151 - Hover state for borders */
 ```
 
 #### Accent Colors
@@ -48,23 +48,23 @@ These are defined in `src/styles/global.css` using `@layer components`:
 
 ### Layout & Structure
 
-#### Terminal Indentation
+#### Tech Indentation
 ```html
-<div class="terminal-indent">
+<div class="tech-indent">
   <!-- Creates left border + padding (ml-6 pl-6 border-l-2) -->
 </div>
 ```
 
-#### Terminal Card
+#### Tech Card
 ```html
-<div class="terminal-card">
+<div class="tech-card">
   <!-- Styled surface with border and hover effect -->
 </div>
 ```
 
 #### Section Header
 ```html
-<div class="terminal-section-header">
+<div class="tech-section-header">
   <span class="text-accent-primary">●</span>
   <span>Section Title</span>
 </div>
@@ -73,8 +73,8 @@ These are defined in `src/styles/global.css` using `@layer components`:
 ### Bullets & Status Indicators
 
 ```html
-<span class="terminal-bullet">●</span>          <!-- Cyan bullet -->
-<span class="terminal-bullet-success">●</span>  <!-- Green bullet -->
+<span class="tech-bullet">●</span>          <!-- Cyan bullet -->
+<span class="tech-bullet-success">●</span>  <!-- Green bullet -->
 <span class="status-active">●</span>            <!-- Active status (green) -->
 <span class="status-inactive">●</span>          <!-- Inactive status (blue) -->
 ```
@@ -82,13 +82,13 @@ These are defined in `src/styles/global.css` using `@layer components`:
 ### Typography
 
 ```html
-<h1 class="terminal-h1">Large Heading</h1>
-<h2 class="terminal-h2">Medium Heading</h2>
-<h3 class="terminal-h3">Small Heading (cyan)</h3>
-<p class="terminal-text">Body text</p>
-<p class="terminal-text-muted">Muted text</p>
-<div class="terminal-prompt">Command</div>      <!-- Adds $ prefix -->
-<div class="terminal-tree-branch">Content</div> <!-- Adds ┖ prefix -->
+<h1 class="tech-h1">Large Heading</h1>
+<h2 class="tech-h2">Medium Heading</h2>
+<h3 class="tech-h3">Small Heading (cyan)</h3>
+<p class="tech-text">Body text</p>
+<p class="tech-text-muted">Muted text</p>
+<div class="tech-prompt">Command</div>      <!-- Adds $ prefix -->
+<div class="tech-tree-branch">Content</div> <!-- Adds ┖ prefix -->
 ```
 
 ### Tags
@@ -101,32 +101,32 @@ These are defined in `src/styles/global.css` using `@layer components`:
 ### Links
 
 ```html
-<a class="terminal-link" href="#">Link</a>         <!-- Basic link -->
-<a class="terminal-link-arrow" href="#">Link</a>   <!-- Link with → prefix -->
+<a class="tech-link" href="#">Link</a>         <!-- Basic link -->
+<a class="tech-link-arrow" href="#">Link</a>   <!-- Link with → prefix -->
 ```
 
 ---
 
 ## 🎯 Astro Components
 
-### TerminalSection
+### TechSection
 Wraps content in a consistent section with optional title and bullet.
 
 ```astro
 ---
-import TerminalSection from '../components/TerminalSection.astro';
+import TechSection from '../components/TechSection.astro';
 ---
 
-<TerminalSection title="Skills" bulletType="primary">
-  <div class="terminal-indent">
+<TechSection title="Skills" bulletType="primary">
+  <div class="tech-indent">
     <!-- Your content here -->
   </div>
-</TerminalSection>
+</TechSection>
 
 <!-- Without title -->
-<TerminalSection>
+<TechSection>
   <!-- Content -->
-</TerminalSection>
+</TechSection>
 ```
 
 **Props:**
@@ -136,24 +136,24 @@ import TerminalSection from '../components/TerminalSection.astro';
 
 ---
 
-### TerminalText
+### TechText
 Typography component with semantic variants.
 
 ```astro
 ---
-import TerminalText from '../components/TerminalText.astro';
+import TechText from '../components/TechText.astro';
 ---
 
-<TerminalText variant="h1">Main Heading</TerminalText>
-<TerminalText variant="h2">Sub Heading</TerminalText>
-<TerminalText variant="h3">Section Title</TerminalText>
-<TerminalText variant="body">Regular paragraph text</TerminalText>
-<TerminalText variant="muted">Less important text</TerminalText>
-<TerminalText variant="prompt">$ command</TerminalText>
-<TerminalText variant="tree-branch">┖ Description text</TerminalText>
+<TechText variant="h1">Main Heading</TechText>
+<TechText variant="h2">Sub Heading</TechText>
+<TechText variant="h3">Section Title</TechText>
+<TechText variant="body">Regular paragraph text</TechText>
+<TechText variant="muted">Less important text</TechText>
+<TechText variant="prompt">$ command</TechText>
+<TechText variant="tree-branch">┖ Description text</TechText>
 
 <!-- Override HTML element -->
-<TerminalText variant="h1" as="h2">Renders as h2 but styled as h1</TerminalText>
+<TechText variant="h1" as="h2">Renders as h2 but styled as h1</TechText>
 ```
 
 **Props:**
@@ -181,19 +181,19 @@ import TechTag from '../components/TechTag.astro';
 
 ---
 
-### TerminalLink
+### TechLink
 Consistent link styling with optional arrow prefix.
 
 ```astro
 ---
-import TerminalLink from '../components/TerminalLink.astro';
+import TechLink from '../components/TechLink.astro';
 ---
 
-<TerminalLink href="/blog">Blog</TerminalLink>
-<TerminalLink href="/blog" arrow>Blog</TerminalLink>        <!-- With → arrow -->
-<TerminalLink href="https://github.com" external arrow>     <!-- External link -->
+<TechLink href="/blog">Blog</TechLink>
+<TechLink href="/blog" arrow>Blog</TechLink>        <!-- With → arrow -->
+<TechLink href="https://github.com" external arrow>     <!-- External link -->
   GitHub
-</TerminalLink>
+</TechLink>
 ```
 
 **Props:**
@@ -208,50 +208,50 @@ import TerminalLink from '../components/TerminalLink.astro';
 
 ### Example 1: Simple Section with Text
 ```astro
-<TerminalSection title="About Me" bulletType="success">
-  <div class="terminal-indent">
-    <TerminalText variant="body">
+<TechSection title="About Me" bulletType="success">
+  <div class="tech-indent">
+    <TechText variant="body">
       I'm a software engineer passionate about building elegant solutions.
-    </TerminalText>
+    </TechText>
   </div>
-</TerminalSection>
+</TechSection>
 ```
 
 ### Example 2: Skills List with Tags
 ```astro
-<TerminalSection title="Technologies">
-  <div class="terminal-indent">
-    <TerminalText variant="h3">Frontend</TerminalText>
+<TechSection title="Technologies">
+  <div class="tech-indent">
+    <TechText variant="h3">Frontend</TechText>
     <div class="flex flex-wrap gap-2 mt-3">
       <TechTag>React</TechTag>
       <TechTag>TypeScript</TechTag>
       <TechTag>Tailwind</TechTag>
     </div>
   </div>
-</TerminalSection>
+</TechSection>
 ```
 
 ### Example 3: Links Section
 ```astro
-<TerminalSection title="Connect" bulletType="success">
-  <div class="terminal-indent flex flex-col gap-3">
-    <TerminalLink href="https://github.com/username" external arrow>
+<TechSection title="Connect" bulletType="success">
+  <div class="tech-indent flex flex-col gap-3">
+    <TechLink href="https://github.com/username" external arrow>
       github.com/username
-    </TerminalLink>
-    <TerminalLink href="https://linkedin.com/in/username" external arrow>
+    </TechLink>
+    <TechLink href="https://linkedin.com/in/username" external arrow>
       linkedin.com/in/username
-    </TerminalLink>
+    </TechLink>
   </div>
-</TerminalSection>
+</TechSection>
 ```
 
 ### Example 4: Custom Styled Card
 ```astro
-<div class="terminal-card">
-  <TerminalText variant="h2">Project Title</TerminalText>
-  <TerminalText variant="body" class="mb-4">
+<div class="tech-card">
+  <TechText variant="h2">Project Title</TechText>
+  <TechText variant="body" class="mb-4">
     Project description goes here.
-  </TerminalText>
+  </TechText>
   <div class="flex gap-2">
     <TechTag>Node.js</TechTag>
     <TechTag>PostgreSQL</TechTag>
@@ -267,14 +267,14 @@ import TerminalLink from '../components/TerminalLink.astro';
 
 **Page Container:**
 ```html
-<div class="min-h-screen bg-terminal-bg">
+<div class="min-h-screen bg-tech-bg">
   <div class="container mx-auto px-4 py-12 max-w-5xl">
     <!-- Content -->
   </div>
 </div>
 ```
 
-**Terminal Path Breadcrumb:**
+**Tech Path Breadcrumb:**
 ```html
 <div class="text-text-dim text-sm mb-2">~/path/to/section</div>
 ```
@@ -297,7 +297,7 @@ import TerminalLink from '../components/TerminalLink.astro';
 
 ## 🚀 Best Practices
 
-1. **Use semantic components** - Prefer `<TerminalText variant="h1">` over `<h1 class="terminal-h1">`
+1. **Use semantic components** - Prefer `<TechText variant="h1">` over `<h1 class="tech-h1">`
 2. **Compose classes** - Add utility classes to components: `<TechTag class="text-lg">React</TechTag>`
 3. **Stay consistent** - Always use design tokens (accent-primary, text-secondary, etc.) instead of arbitrary colors
 4. **Responsive design** - Use Tailwind responsive prefixes: `sm:`, `md:`, `lg:`
@@ -321,5 +321,5 @@ import TerminalLink from '../components/TerminalLink.astro';
 
 ### Adding CSS Utilities
 1. Add to `src/styles/global.css` under `@layer components`
-2. Follow naming convention: `terminal-*` or `tech-*`
+2. Follow naming convention: `tech-*` or `tech-*`
 3. Document in this file

@@ -1,9 +1,9 @@
 ---
 /**
- * Reusable text component with terminal styling variants
- * Usage: <TerminalText variant="h1">Your text</TerminalText>
+ * Reusable text component with Tech styling variants
+ * Usage: <TechText variant="h1">Your text</TechText>
  */
-type Variant = 'h1' | 'h2' | 'h3' | 'body' | 'muted' | 'prompt' | 'tree-branch';
+type Variant = 'h1' | 'h2' | 'h3' | 'body' | 'muted' | 'tree-branch';
 
 interface Props {
   variant?: Variant;
@@ -15,13 +15,12 @@ const variant = props.variant ?? 'body';
 const className = props.class ?? '';
 
 const variantClasses: Record<Variant, string> = {
-  h1: 'terminal-h1',
-  h2: 'terminal-h2',
-  h3: 'terminal-h3',
-  body: 'terminal-text',
-  muted: 'terminal-text-muted',
-  prompt: 'terminal-prompt text-text-primary',
-  'tree-branch': 'terminal-tree-branch terminal-text',
+  h1: 'tech-h1',
+  h2: 'tech-h2',
+  h3: 'tech-h3',
+  body: 'tech-text',
+  muted: 'tech-text-muted',
+  'tree-branch': 'tech-tree-branch tech-text',
 };
 
 const classes = `${variantClasses[variant]} ${className}`;
@@ -32,5 +31,4 @@ const classes = `${variantClasses[variant]} ${className}`;
 {variant === 'h3' && <h3 class={classes}><slot /></h3>}
 {variant === 'body' && <p class={classes}><slot /></p>}
 {variant === 'muted' && <p class={classes}><slot /></p>}
-{variant === 'prompt' && <div class={classes}><slot /></div>}
 {variant === 'tree-branch' && <div class={classes}><slot /></div>}

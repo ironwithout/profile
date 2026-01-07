@@ -3,13 +3,13 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
-      // Design Tokens - Terminal/CLI Theme
+      // Design Tokens - Tech Style Theme
       colors: {
-        terminal: {
-          bg: '#0a0a0f',      // bg-terminal-bg
-          surface: '#111118', // bg-terminal-surface
-          border: '#1f2937',  // border-terminal-border
-          hover: '#374151',   // hover:bg-terminal-hover
+        tech: {
+          bg: '#0a0a0f',      // bg-tech-bg
+          surface: '#111118', // bg-tech-surface
+          border: '#1f2937',  // border-tech-border
+          hover: '#374151',   // hover:bg-tech-hover
         },
         accent: {
           primary: '#22d3ee',   // text-accent-primary (cyan)
@@ -28,7 +28,7 @@ export default {
         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
       },
       spacing: {
-        'terminal-indent': '1.5rem', // ml-6
+        'tech-indent': '1.5rem', // ml-6
       }
     },
   },

@@ -1,5 +1,5 @@
 ---
-import TerminalText from './TerminalText.astro';
+import TechText from './TechText.astro';
 import TechTag from './TechTag.astro';
 
 interface Props {
@@ -19,7 +19,7 @@ const { company, role, period, location, description, achievements, technologies
 const cardId = `experience-${index}`;
 ---
 
-<div class="terminal-card mb-6">
+<div class="tech-card mb-6">
   <!-- Card Header - Always visible, clickable -->
   <button 
     class="w-full text-left cursor-pointer"
@@ -58,11 +58,11 @@ const cardId = `experience-${index}`;
 
   <!-- Expandable Content -->
   <div id={cardId} class={defaultExpanded ? '' : 'hidden'}>
-    <div class="mt-4 pt-4 border-t border-terminal-border space-y-4">
+    <div class="mt-4 pt-4 border-t border-tech-border space-y-4">
       <!-- Description -->
-      <TerminalText variant="body">
+      <TechText variant="body">
         {description}
-      </TerminalText>
+      </TechText>
 
       <!-- Achievements -->
       {achievements && achievements.length > 0 && (

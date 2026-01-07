@@ -1,7 +1,7 @@
 ---
 /**
- * Reusable terminal-styled link component
- * Usage: <TerminalLink href="..." arrow>Link text</TerminalLink>
+ * Reusable Tech-styled link component
+ * Usage: <TechLink href="..." arrow>Link text</TechLink>
  */
 interface Props {
   href: string;
@@ -17,7 +17,7 @@ const externalProps = external ? {
   rel: 'noopener noreferrer'
 } : {};
 
-const linkClass = arrow ? 'terminal-link-arrow' : 'terminal-link';
+const linkClass = arrow ? 'tech-link-arrow' : 'tech-link';
 ---
 
 <a 

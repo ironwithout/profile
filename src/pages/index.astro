@@ -1,37 +1,37 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import TerminalSection from '../components/TerminalSection.astro';
-import TerminalText from '../components/TerminalText.astro';
-import TerminalLink from '../components/TerminalLink.astro';
+import TechSection from '../components/TechSection.astro';
+import TechText from '../components/TechText.astro';
+import TechLink from '../components/TechLink.astro';
 import TechTag from '../components/TechTag.astro';
 ---
 
 <Layout title="Miguel Sánchez - Professional Profile">
-  <div class="min-h-screen bg-terminal-bg">
+  <div class="min-h-screen bg-tech-bg">
     <div class="container mx-auto px-4 py-12 max-w-5xl">
       
       <!-- Hero Section -->
-      <TerminalSection>
+      <TechSection>
         <div class="text-text-dim text-sm mb-2 uppercase tracking-wider">Welcome</div>
-        <TerminalText variant="h1">
+        <TechText variant="h1">
           Miguel Sánchez
-        </TerminalText>
-        <div class="terminal-indent space-y-4">
+        </TechText>
+        <div class="tech-indent space-y-4">
           <p class="text-text-muted">
             Software Engineer <span class="text-text-dim">|</span> Full Stack Developer <span class="text-text-dim">|</span> Problem Solver
           </p>
-          <TerminalText variant="muted" class="max-w-3xl">
+          <TechText variant="muted" class="max-w-3xl">
             Passionate about building elegant solutions to complex problems. 
             Experienced in web development, cloud architecture, and creating user-friendly applications.
-          </TerminalText>
+          </TechText>
         </div>
-      </TerminalSection>
+      </TechSection>
 
       <!-- Skills Section -->
-      <TerminalSection title="Skills & Technologies" bulletType="secondary">
-        <div class="terminal-indent grid grid-cols-1 md:grid-cols-3 gap-8">
+      <TechSection title="Skills & Technologies" bulletType="secondary">
+        <div class="tech-indent grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <TerminalText variant="h3">Frontend:</TerminalText>
+            <TechText variant="h3">Frontend:</TechText>
             <div class="flex flex-wrap gap-2">
               <TechTag variant="muted">React</TechTag>
               <TechTag variant="muted">TypeScript</TechTag>
@@ -40,7 +40,7 @@ import TechTag from '../components/TechTag.astro';
             </div>
           </div>
           <div>
-            <TerminalText variant="h3">Backend:</TerminalText>
+            <TechText variant="h3">Backend:</TechText>
             <div class="flex flex-wrap gap-2">
               <TechTag variant="muted">Node.js</TechTag>
               <TechTag variant="muted">Python</TechTag>
@@ -49,7 +49,7 @@ import TechTag from '../components/TechTag.astro';
             </div>
           </div>
           <div>
-            <TerminalText variant="h3">DevOps:</TerminalText>
+            <TechText variant="h3">DevOps:</TechText>
             <div class="flex flex-wrap gap-2">
               <TechTag variant="muted">Docker</TechTag>
               <TechTag variant="muted">AWS</TechTag>
@@ -58,20 +58,20 @@ import TechTag from '../components/TechTag.astro';
             </div>
           </div>
         </div>
-      </TerminalSection>
+      </TechSection>
 
       <!-- Contact/Social Links -->
-      <section class="font-mono text-sm border-t-2 border-terminal-border pt-12">
-        <TerminalSection title="Connect" bulletType="success">
-          <div class="terminal-indent flex flex-col gap-3">
-            <TerminalLink href="https://github.com/ironwithout" external arrow>
+      <section class="font-mono text-sm border-t-2 border-tech-border pt-12">
+        <TechSection title="Connect" bulletType="success">
+          <div class="tech-indent flex flex-col gap-3">
+            <TechLink href="https://github.com/ironwithout" external arrow>
               github.com/ironwithout
-            </TerminalLink>
-            <TerminalLink href="https://www.linkedin.com/in/miguel-sanchez-devops" external arrow>
+            </TechLink>
+            <TechLink href="https://www.linkedin.com/in/miguel-sanchez-devops" external arrow>
               linkedin.com/in/miguel-sanchez-devops
-            </TerminalLink>
+            </TechLink>
           </div>
-        </TerminalSection>
+        </TechSection>
       </section>
     </div>
   </div>

@@ -1,7 +1,7 @@
 ---
 /**
- * Reusable terminal-themed section wrapper
- * Usage: Wrap any section content to get consistent terminal styling
+ * Reusable Tech-themed section wrapper
+ * Usage: Wrap any section content to get consistent Tech styling
  */
 interface Props {
   title?: string;
@@ -20,7 +20,7 @@ const bulletColors = {
 
 <section class={`mb-16 font-mono text-sm ${className}`}>
   {title && (
-    <div class="terminal-section-header">
+    <div class="tech-section-header">
       <span class={`${bulletColors[bulletType]}`}>●</span>
       <span class="text-text-primary font-semibold">{title}</span>
     </div>
