@@ -1,108 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import TechSection from '../components/TechSection.astro';
-import TechText from '../components/TechText.astro';
-import ExperienceCard from '../components/ExperienceCard.astro';
-import ProjectCard from '../components/ProjectCard.astro';
 import ScrollIndicator from '../components/ScrollIndicator.astro';
-import { profile, skills } from '../data/profile';
-import { experiences } from '../data/experiences';
-import { projects } from '../data/projects';
+import IntroductionSection from '../sections/index/IntroductionSection.astro';
+import CareerSection from '../sections/index/CareerSection.astro';
+import SkillsSection from '../sections/index/SkillsSection.astro';
+import ProjectsSection from '../sections/index/ProjectsSection.astro';
+import { profile } from '../data/profile';
 ---
 
 <Layout title="Miguel Sánchez - Professional Profile">
   <ScrollIndicator sections={['Introduction', 'Career', 'Skills', 'Projects']} />
-
   <div class="snap-y snap-mandatory overflow-y-scroll h-screen bg-tech-bg">
-
-    <!-- Introduction Section -->
-    <section class="snap-start min-h-screen flex items-center" data-section="0">
-      <div class="container mx-auto px-4 py-12 max-w-5xl section-content">
-        <TechSection>
-          <TechText variant="h1">
-            {profile.name}
-          </TechText>
-          <div class="space-y-2">
-            <TechText variant="body" class="max-w-3xl">
-              {profile.description}
-            </TechText>
-          </div>
-        </TechSection>
-      </div>
-    </section>
-
-    <!-- Career Section -->
-    <section class="snap-start min-h-screen flex items-center" data-section="1">
-      <div class="container mx-auto px-4 py-12 max-w-5xl section-content">
-        <TechSection>
-          <TechText variant="h2">
-            Career
-          </TechText>
-          <div class="mt-6 relative">
-            <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-tech-border transform -translate-x-1/2"></div>
-
-            {experiences.map((exp, index) => (
-              <div class={`relative mb-12 flex ${index % 2 === 0 ? 'justify-end' : 'justify-start'}`}>
-                <div class={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
-                  <ExperienceCard 
-                    {...exp}
-                    index={index}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </TechSection>
-      </div>
-    </section>
-
-    <!-- Skills & Technologies Section -->
-    <section class="snap-start min-h-screen flex items-center" data-section="2">
-      <div class="container mx-auto px-4 py-12 max-w-5xl section-content">
-        <TechSection>
-          <TechText variant="h2">
-            Skills & Technologies
-          </TechText>
-          <div class="mt-8 space-y-8">
-            {Object.entries(skills).map(([category, techs]) => (
-              <div>
-                <TechText variant="h3" class="mb-4">
-                  {category}
-                </TechText>
-                <div class="flex flex-wrap gap-3">
-                  {techs.map(tech => (
-                    <span class="px-4 py-2 bg-tech-card border border-tech-border rounded-lg text-tech-text-primary hover:border-tech-accent transition-colors">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </TechSection>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="snap-start min-h-screen flex flex-col justify-between" data-section="3">
-      <div class="container mx-auto px-4 py-12 max-w-5xl flex-grow flex items-center section-content">
-        <TechSection>
-        <TechText variant="h2">
-          Projects
-        </TechText>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-          {projects.map(project => (
-            <ProjectCard {...project} />
-          ))}
-        </div>
-      </TechSection>
-      </div>
-
-      <!-- Footer -->
-      <div class="pb-8 text-center text-text-dim text-sm font-mono">
-        <p><span class="text-accent-primary">●</span> &copy; {new Date().getFullYear()} {profile.name}</p>
-      </div>
-    </section>
+    <IntroductionSection sectionIndex={0} />
+    <CareerSection sectionIndex={1} />
+    <SkillsSection sectionIndex={2} />
+    <ProjectsSection sectionIndex={3} />
+    
+    <!-- Footer -->
+    <footer class="fixed bottom-0 left-0 right-0 pb-8 text-center text-text-dim text-sm font-mono pointer-events-none">
+      <p><span class="text-accent-primary">●</span> &copy; {new Date().getFullYear()} {profile.name}</p>
+    </footer>
   </div>
 </Layout>
 

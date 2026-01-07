@@ -1,0 +1,25 @@
+---
+import PageSection from '../../components/PageSection.astro';
+import TechSection from '../../components/TechSection.astro';
+import TechText from '../../components/TechText.astro';
+import { profile } from '../../data/profile';
+
+interface Props {
+  sectionIndex: number;
+}
+
+const { sectionIndex } = Astro.props;
+---
+
+<PageSection sectionIndex={sectionIndex}>
+  <TechSection>
+    <TechText variant="h1">
+      {profile.name}
+    </TechText>
+    <div class="space-y-2">
+      <TechText variant="body" class="max-w-3xl">
+        {profile.description}
+      </TechText>
+    </div>
+  </TechSection>
+</PageSection>

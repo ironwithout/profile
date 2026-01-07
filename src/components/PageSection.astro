@@ -1,0 +1,44 @@
+---
+/**
+ * Page Section wrapper for snap scrolling layout
+ * Handles the section container, animation classes, and scroll indicator integration
+ */
+interface Props {
+  sectionIndex: number;
+  alignItems?: 'center' | 'start' | 'end';
+  flexDirection?: 'col' | 'row';
+  justify?: 'between' | 'center' | 'start' | 'end';
+  hasFooter?: boolean;
+}
+
+const { 
+  sectionIndex, 
+  alignItems = 'center',
+  flexDirection,
+  justify,
+  hasFooter = false
+} = Astro.props;
+
+const flexClasses = [
+  'flex',
+  flexDirection === 'col' ? 'flex-col' : '',
+  alignItems ? `items-${alignItems}` : '',
+  justify ? `justify-${justify}` : '',
+].filter(Boolean).join(' ');
+
+const containerClasses = hasFooter 
+  ? 'container mx-auto px-4 py-12 max-w-5xl flex-grow flex items-center section-content'
+  : 'container mx-auto px-4 py-12 max-w-5xl section-content';
+---
+
+<section 
+  class={`snap-start min-h-screen ${flexClasses}`}
+  data-section={sectionIndex}
+>
+  <div class={containerClasses}>
+    <slot />
+  </div>
+  {hasFooter && (
+    <slot name="footer" />
+  )}
+</section>

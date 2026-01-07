@@ -1,0 +1,36 @@
+---
+import PageSection from '../../components/PageSection.astro';
+import TechSection from '../../components/TechSection.astro';
+import TechText from '../../components/TechText.astro';
+import { skills } from '../../data/profile';
+
+interface Props {
+  sectionIndex: number;
+}
+
+const { sectionIndex } = Astro.props;
+---
+
+<PageSection sectionIndex={sectionIndex}>
+  <TechSection>
+    <TechText variant="h2">
+      Skills & Technologies
+    </TechText>
+    <div class="mt-8 space-y-8">
+      {Object.entries(skills).map(([category, techs]) => (
+        <div>
+          <TechText variant="h3" class="mb-4">
+            {category}
+          </TechText>
+          <div class="flex flex-wrap gap-3">
+            {techs.map(tech => (
+              <span class="px-4 py-2 bg-tech-card border border-tech-border rounded-lg text-tech-text-primary hover:border-tech-accent transition-colors">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </TechSection>
+</PageSection>
