@@ -27,9 +27,6 @@ export default {
       fontFamily: {
         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
       },
-      spacing: {
-        'tech-indent': '1.5rem', // ml-6
-      }
     },
   },
   plugins: [],

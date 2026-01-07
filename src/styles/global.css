@@ -19,11 +19,6 @@
     @apply text-accent-success mt-1 flex-shrink-0;
   }
   
-  /* Borders & Indentation */
-  .tech-indent {
-    @apply ml-tech-indent pl-tech-indent border-l-2 border-tech-border;
-  }
-  
   /* Section Headers */
   .tech-section-header {
     @apply flex items-center gap-2 mb-6;

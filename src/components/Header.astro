@@ -1,35 +1,22 @@
 ---
-const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '/professional', label: 'Professional' },
-  { href: '/personal', label: 'Personal' },
-  { href: '/blog', label: 'Blog' },
-];
+interface Props {
+  sectionTitle?: string;
+}
+
+const { sectionTitle } = Astro.props;
 
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="bg-tech-surface border-b-2 border-tech-border font-mono">
+<header class="bg-tech-bg font-mono">
   <nav class="container mx-auto px-4 py-4">
-    <div class="flex items-center justify-between">
-      <a href="/" class="text-xl font-semibold text-accent-primary hover:text-accent-secondary transition-colors uppercase tracking-wider">
-        Miguel Sánchez
+    <div class="flex items-center justify-end">
+      <a 
+        href="/blog"
+        class="px-4 py-2 border-2 rounded transition-all uppercase tracking-wide text-sm font-medium border-tech-border text-text-muted hover:border-accent-secondary hover:text-accent-secondary"
+      >
+        Blog
       </a>
-      <ul class="flex gap-6 text-sm">
-        {navItems.map(({ href, label }) => (
-          <li>
-            <a 
-              href={href}
-              class:list={[
-                "hover:text-accent-primary transition-colors uppercase tracking-wide",
-                currentPath === href ? "text-accent-primary" : "text-text-muted"
-              ]}
-            >
-              {currentPath === href && <span class="text-accent-success">● </span>}{label}
-            </a>
-          </li>
-        ))}
-      </ul>
     </div>
   </nav>
 </header>

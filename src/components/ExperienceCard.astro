@@ -15,7 +15,7 @@ interface Props {
   defaultExpanded?: boolean;
 }
 
-const { company, role, period, location, description, achievements, technologies, status = 'completed', index, defaultExpanded = false } = Astro.props;
+const { company, role, period, location, description, achievements, technologies, status = 'completed', index } = Astro.props;
 const cardId = `experience-${index}`;
 ---
 
@@ -23,7 +23,20 @@ const cardId = `experience-${index}`;
   <!-- Card Header - Always visible, clickable -->
   <button 
     class="w-full text-left cursor-pointer"
-    onclick={`document.getElementById('${cardId}').classList.toggle('hidden'); this.querySelector('.expand-icon').classList.toggle('rotate-90')`}
+    onclick={`
+      // Close all other experience cards
+      document.querySelectorAll('[id^="experience-"]').forEach(el => {
+        if (el.id !== '${cardId}') {
+          el.classList.add('hidden');
+          // Find and reset the icon for closed cards
+          const btn = document.querySelector('[onclick*="' + el.id + '"]');
+          if (btn) btn.querySelector('.expand-icon').classList.remove('rotate-90');
+        }
+      });
+      // Toggle current card
+      document.getElementById('${cardId}').classList.toggle('hidden');
+      this.querySelector('.expand-icon').classList.toggle('rotate-90');
+    `}
     type="button"
   >
     <div class="flex items-start justify-between gap-4">
@@ -46,7 +59,7 @@ const cardId = `experience-${index}`;
         </div>
       </div>
       <svg 
-        class={`expand-icon w-5 h-5 text-accent-primary transition-transform flex-shrink-0 mt-1 ${defaultExpanded ? 'rotate-90' : ''}`}
+        class="expand-icon w-5 h-5 text-accent-primary transition-transform flex-shrink-0 mt-1"
         fill="none" 
         stroke="currentColor" 
         viewBox="0 0 24 24"
@@ -57,7 +70,7 @@ const cardId = `experience-${index}`;
   </button>
 
   <!-- Expandable Content -->
-  <div id={cardId} class={defaultExpanded ? '' : 'hidden'}>
+  <div id={cardId} class="hidden">
     <div class="mt-4 pt-4 border-t border-tech-border space-y-4">
       <!-- Description -->
       <TechText variant="body">
