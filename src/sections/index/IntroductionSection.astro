@@ -13,9 +13,13 @@ const { sectionIndex } = Astro.props;
 
 <PageSection sectionIndex={sectionIndex}>
   <Section>
-    <Text variant="h1">{introduction.name}</Text>
+    <Text variant="h1">
+      {introduction.name}
+    </Text>
     <div class="space-y-2">
-      <Text variant="body" class="max-w-3xl">{introduction.description}</Text>
+      <Text variant="body" class="max-w-3xl">
+        {introduction.description}
+      </Text>
     </div>
   </Section>
 </PageSection>
