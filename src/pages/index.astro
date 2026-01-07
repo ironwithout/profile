@@ -107,29 +107,5 @@ import { projects } from '../data/projects';
 </Layout>
 
 <script>
-  // Animate sections on scroll
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const content = entry.target.querySelector('.section-content');
-        if (content) {
-          if (entry.isIntersecting) {
-            content.classList.add('visible');
-          } else {
-            content.classList.remove('visible');
-          }
-        }
-      });
-    },
-    {
-      threshold: 0.2, // Trigger when 20% visible
-    }
-  );
-
-  // Observe all sections
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('[data-section]').forEach((section) => {
-      observer.observe(section);
-    });
-  });
+  import '../scripts/scrollAnimation';
 </script>
