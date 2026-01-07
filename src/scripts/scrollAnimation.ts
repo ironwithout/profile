@@ -22,7 +22,8 @@ export function initScrollObserver() {
 
   // Callback for active section tracking (scroll indicator)
   const navigationCallback: ScrollCallback = (entry) => {
-    if (entry.isIntersecting) {
+    // Only process when intersection ratio is above 0.5 (majority visible)
+    if (entry.intersectionRatio > 0.5) {
       const sectionIndex = entry.target.getAttribute('data-section');
       // Update active dot
       document.querySelectorAll('.scroll-dot').forEach((dot, index) => {
@@ -45,7 +46,7 @@ export function initScrollObserver() {
       });
     },
     {
-      threshold: [0.2, 0.5], // 0.2 for animations, 0.5 for navigation
+      threshold: [0.2, 0.5, 0.6], // 0.2 for animations, 0.5+ for navigation tracking
     }
   );
 
