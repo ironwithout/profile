@@ -1,9 +1,9 @@
 ---
 import PageSection from '../../components/PageSection.astro';
-import TechSection from '../../components/TechSection.astro';
-import TechText from '../../components/TechText.astro';
+import Section from '../../components/Section.astro';
+import Text from '../../components/Text.astro';
 import ExperienceCard from '../../components/ExperienceCard.astro';
-import { experiences } from '../../data/experiences';
+import { experiences } from '../../data/career';
 
 interface Props {
   sectionIndex: number;
@@ -13,10 +13,10 @@ const { sectionIndex } = Astro.props;
 ---
 
 <PageSection sectionIndex={sectionIndex}>
-  <TechSection>
-    <TechText variant="h2">
+  <Section>
+    <Text variant="h2">
       Career
-    </TechText>
+    </Text>
     <div class="mt-6 relative">
       <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-tech-border transform -translate-x-1/2"></div>
       {experiences.map((exp, index) => (
@@ -30,5 +30,5 @@ const { sectionIndex } = Astro.props;
         </div>
       ))}
     </div>
-  </TechSection>
+  </Section>
 </PageSection>

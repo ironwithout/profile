@@ -1,7 +1,7 @@
 ---
-import TechText from './TechText.astro';
-import TechLink from './TechLink.astro';
-import TechTag from './TechTag.astro';
+import Text from './Text.astro';
+import Link from './Link.astro';
+import Tag from './Tag.astro';
 
 interface Props {
   title: string;
@@ -15,25 +15,21 @@ const { title, description, technologies, link, github } = Astro.props;
 ---
 
 <div class="tech-card">
-  <TechText variant="h3">{title}</TechText>
-  <TechText variant="body" class="mt-2 mb-4">{description}</TechText>
+  <Text variant="h3">{title}</Text>
+  <Text variant="body" class="mt-2 mb-4">{description}</Text>
   <div class="flex gap-2">
     {technologies.map(tech => (
-        <TechTag>{tech}</TechTag>
+        <Tag>{tech}</Tag>
       ))}
   </div>
 
   {(link || github) && (
     <div class="flex gap-4 pt-2">
       {link && (
-        <TechLink href={link} external arrow>
-          Live Demo
-        </TechLink>
+        <Link href={link} external arrow>Live Demo</Link>
       )}
       {github && (
-        <TechLink href={github} external arrow>
-          Source
-        </TechLink>
+        <Link href={github} external arrow>Source</Link>
       )}
     </div>
   )}

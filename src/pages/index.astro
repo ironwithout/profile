@@ -5,7 +5,6 @@ import IntroductionSection from '../sections/index/IntroductionSection.astro';
 import CareerSection from '../sections/index/CareerSection.astro';
 import SkillsSection from '../sections/index/SkillsSection.astro';
 import ProjectsSection from '../sections/index/ProjectsSection.astro';
-import { profile } from '../data/profile';
 ---
 
 <Layout title="Miguel Sánchez - Professional Profile">
@@ -18,7 +17,7 @@ import { profile } from '../data/profile';
     
     <!-- Footer -->
     <footer class="fixed bottom-0 left-0 right-0 pb-8 text-center text-text-dim text-sm font-mono pointer-events-none">
-      <p><span class="text-accent-primary">●</span> &copy; {new Date().getFullYear()} {profile.name}</p>
+      <p><span class="text-accent-primary">●</span> &copy; {new Date().getFullYear()}</p>
     </footer>
   </div>
 </Layout>

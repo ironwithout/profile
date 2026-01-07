@@ -1,12 +1,4 @@
 /**
- * Personal profile information
- */
-export const profile = {
-  name: "Miguel Sánchez",
-  description: "Presentation and profile description (ca 100w)",
-};
-
-/**
  * Skills organized by category
  */
 export const skills = {

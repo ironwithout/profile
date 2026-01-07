@@ -1,7 +1,7 @@
 ---
 import PageSection from '../../components/PageSection.astro';
-import TechSection from '../../components/TechSection.astro';
-import TechText from '../../components/TechText.astro';
+import Section from '../../components/Section.astro';
+import Text from '../../components/Text.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import { projects } from '../../data/projects';
 
@@ -13,14 +13,14 @@ const { sectionIndex } = Astro.props;
 ---
 
 <PageSection sectionIndex={sectionIndex}>
-  <TechSection>
-    <TechText variant="h2">
+  <Section>
+    <Text variant="h2">
       Projects
-    </TechText>
+    </Text>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
       {projects.map(project => (
         <ProjectCard {...project} />
       ))}
     </div>
-  </TechSection>
+  </Section>
 </PageSection>

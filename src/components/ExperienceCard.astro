@@ -1,6 +1,6 @@
 ---
-import TechText from './TechText.astro';
-import TechTag from './TechTag.astro';
+import Text from './Text.astro';
+import Tag from './Tag.astro';
 
 interface Props {
   company: string;
@@ -89,9 +89,9 @@ const cardId = `experience-${index}`;
   <div id={cardId} class="expandable-content">
     <div class="pt-4 border-t border-tech-border space-y-4">
       <!-- Description -->
-      <TechText variant="body">
+      <Text variant="body">
         {description}
-      </TechText>
+      </Text>
 
       <!-- Achievements -->
       {achievements && achievements.length > 0 && (
@@ -111,7 +111,7 @@ const cardId = `experience-${index}`;
         <span class="text-text-dim text-xs uppercase tracking-wider block mb-2">Tech Stack:</span>
         <div class="flex flex-wrap gap-2">
           {technologies.map((tech) => (
-            <TechTag>{tech}</TechTag>
+            <Tag>{tech}</Tag>
           ))}
         </div>
       </div>
