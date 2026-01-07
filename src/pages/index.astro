@@ -4,74 +4,9 @@ import TechSection from '../components/TechSection.astro';
 import TechText from '../components/TechText.astro';
 import ExperienceCard from '../components/ExperienceCard.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-
-const experiences = [
-  {
-    company: "TechCorp",
-    role: "Senior Full-Stack Developer",
-    period: "2022 → Present",
-    location: "Remote",
-    status: "current" as const,
-    description: "Leading development of scalable web applications and architecting cloud infrastructure",
-    achievements: [
-      "Architected microservices platform serving 100K+ daily active users",
-      "Reduced API response time by 60% through caching and optimization",
-      "Led cross-functional team of 5 engineers delivering major features on schedule",
-    ],
-    technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "AWS", "Docker"],
-  },
-  {
-    company: "Digital Studio",
-    role: "Full-Stack Developer",
-    period: "2020 → 2022",
-    location: "Hybrid",
-    status: "completed" as const,
-    description: "Built custom solutions for clients ranging from early-stage startups to enterprises",
-    achievements: [
-      "Developed real-time analytics dashboard processing 1M+ daily events",
-      "Implemented CI/CD pipeline cutting deployment time from 2hrs to 10min",
-      "Collaborated with design team on award-winning product interfaces",
-    ],
-    technologies: ["Vue.js", "Python", "Django", "Redis", "MongoDB", "GCP"],
-  },
-  {
-    company: "StartupCo",
-    role: "Software Engineer",
-    period: "2018 → 2020",
-    location: "On-site",
-    status: "completed" as const,
-    description: "Core team member building MVP and early product iterations in fast-paced environment",
-    achievements: [
-      "Built MVP that secured $2M seed funding from tier-1 VCs",
-      "Created authentication gateway handling 10+ microservices",
-      "Established testing practices achieving 85% code coverage",
-    ],
-    technologies: ["JavaScript", "Express", "MySQL", "Kubernetes", "Jenkins"],
-  },
-];
-
-const projects = [
-  {
-    title: "Weather App",
-    description: "Beautiful weather application with 7-day forecasts and location-based alerts.",
-    technologies: ["Astro", "Tailwind", "OpenWeather API"],
-    link: "https://example.com",
-    github: "https://github.com/yourusername/weather-app",
-  },
-  {
-    title: "Markdown Blog",
-    description: "Static site generator for blogs with markdown support and SEO optimization.",
-    technologies: ["Astro", "TypeScript", "MDX"],
-    github: "https://github.com/yourusername/blog",
-  },
-  {
-    title: "Task Manager",
-    description: "Minimalist task management app with drag-and-drop and local storage.",
-    technologies: ["React", "IndexedDB", "CSS"],
-    link: "https://example.com",
-    github: "https://github.com/yourusername/task-manager",
-  },
-];
+import { profile, skills } from '../data/profile';
+import { experiences } from '../data/experiences';
+import { projects } from '../data/projects';
 ---
 
 <Layout title="Miguel Sánchez - Professional Profile">
@@ -82,11 +17,11 @@ const projects = [
       <div class="container mx-auto px-4 py-12 max-w-5xl">
         <TechSection>
           <TechText variant="h1">
-            Miguel Sánchez
+            {profile.name}
           </TechText>
           <div class="space-y-2">
             <TechText variant="body" class="max-w-3xl">
-              Presentation and profile description (ca 100w)
+              {profile.description}
             </TechText>
           </div>
         </TechSection>
@@ -132,7 +67,7 @@ const projects = [
                 Frontend
               </TechText>
               <div class="flex flex-wrap gap-3">
-                {["React", "TypeScript", "Vue.js", "Astro", "Tailwind CSS", "Next.js"].map(tech => (
+                {skills.frontend.map(tech => (
                   <span class="px-4 py-2 bg-tech-card border border-tech-border rounded-lg text-tech-text-primary hover:border-tech-accent transition-colors">
                     {tech}
                   </span>
@@ -146,7 +81,7 @@ const projects = [
                 Backend
               </TechText>
               <div class="flex flex-wrap gap-3">
-                {["Node.js", "Python", "Django", "Express", "PostgreSQL", "MongoDB", "Redis"].map(tech => (
+                {skills.backend.map(tech => (
                   <span class="px-4 py-2 bg-tech-card border border-tech-border rounded-lg text-tech-text-primary hover:border-tech-accent transition-colors">
                     {tech}
                   </span>
@@ -160,7 +95,7 @@ const projects = [
                 DevOps & Cloud
               </TechText>
               <div class="flex flex-wrap gap-3">
-                {["AWS", "GCP", "Docker", "Kubernetes", "Jenkins", "CI/CD"].map(tech => (
+                {skills.devops.map(tech => (
                   <span class="px-4 py-2 bg-tech-card border border-tech-border rounded-lg text-tech-text-primary hover:border-tech-accent transition-colors">
                     {tech}
                   </span>
@@ -189,7 +124,7 @@ const projects = [
       
       <!-- Footer -->
       <div class="pb-8 text-center text-text-dim text-sm font-mono">
-        <p><span class="text-accent-primary">●</span> &copy; {new Date().getFullYear()} Miguel Sánchez</p>
+        <p><span class="text-accent-primary">●</span> &copy; {new Date().getFullYear()} {profile.name}</p>
       </div>
     </section>
   </div>

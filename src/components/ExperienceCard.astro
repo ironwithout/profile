@@ -19,6 +19,21 @@ const { company, role, period, location, description, achievements, technologies
 const cardId = `experience-${index}`;
 ---
 
+<style>
+  .expandable-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out, margin-top 0.3s ease-out;
+  }
+  
+  .expandable-content.expanded {
+    max-height: 1000px;
+    opacity: 1;
+    margin-top: 1rem;
+  }
+</style>
+
 <div class="tech-card mb-6">
   <!-- Card Header - Always visible, clickable -->
   <button 
@@ -27,14 +42,15 @@ const cardId = `experience-${index}`;
       // Close all other experience cards
       document.querySelectorAll('[id^="experience-"]').forEach(el => {
         if (el.id !== '${cardId}') {
-          el.classList.add('hidden');
+          el.classList.remove('expanded');
           // Find and reset the icon for closed cards
           const btn = document.querySelector('[onclick*="' + el.id + '"]');
           if (btn) btn.querySelector('.expand-icon').classList.remove('rotate-90');
         }
       });
       // Toggle current card
-      document.getElementById('${cardId}').classList.toggle('hidden');
+      const content = document.getElementById('${cardId}');
+      content.classList.toggle('expanded');
       this.querySelector('.expand-icon').classList.toggle('rotate-90');
     `}
     type="button"
@@ -70,8 +86,8 @@ const cardId = `experience-${index}`;
   </button>
 
   <!-- Expandable Content -->
-  <div id={cardId} class="hidden">
-    <div class="mt-4 pt-4 border-t border-tech-border space-y-4">
+  <div id={cardId} class="expandable-content">
+    <div class="pt-4 border-t border-tech-border space-y-4">
       <!-- Description -->
       <TechText variant="body">
         {description}
