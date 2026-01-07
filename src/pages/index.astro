@@ -1,93 +1,80 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import TerminalSection from '../components/TerminalSection.astro';
+import TerminalText from '../components/TerminalText.astro';
+import TerminalLink from '../components/TerminalLink.astro';
+import TechTag from '../components/TechTag.astro';
 ---
 
 <Layout title="Miguel Sánchez - Professional Profile">
-  <div class="min-h-screen bg-gray-950">
+  <div class="min-h-screen bg-terminal-bg">
     <div class="container mx-auto px-4 py-12 max-w-5xl">
       
       <!-- Hero Section -->
-      <section class="mb-16 font-mono">
-        <div class="text-gray-500 text-sm mb-2">~/home</div>
-        <h1 class="text-4xl mb-4">
-          <span class="text-emerald-400">$</span> <span class="text-white">whoami</span>
-        </h1>
-        <div class="ml-6 pl-6 border-l-2 border-gray-800 space-y-4">
-          <p class="text-xl text-gray-300">
-            <span class="text-cyan-400 font-semibold">Miguel Sánchez</span>
+      <TerminalSection>
+        <div class="text-text-dim text-sm mb-2">~/home</div>
+        <TerminalText variant="h1">
+          <span class="terminal-prompt">whoami</span>
+        </TerminalText>
+        <div class="terminal-indent space-y-4">
+          <p class="text-xl text-text-secondary">
+            <span class="text-accent-primary font-semibold">Miguel Sánchez</span>
           </p>
-          <p class="text-gray-400">
-            Software Engineer <span class="text-gray-600">|</span> Full Stack Developer <span class="text-gray-600">|</span> Problem Solver
+          <p class="text-text-muted">
+            Software Engineer <span class="text-text-dim">|</span> Full Stack Developer <span class="text-text-dim">|</span> Problem Solver
           </p>
-          <p class="text-gray-400 leading-relaxed max-w-3xl">
+          <TerminalText variant="muted" class="max-w-3xl">
             Passionate about building elegant solutions to complex problems. 
             Experienced in web development, cloud architecture, and creating user-friendly applications.
-          </p>
+          </TerminalText>
         </div>
-      </section>
+      </TerminalSection>
 
       <!-- Skills Section -->
-      <section class="mb-16 font-mono text-sm">
-        <div class="flex items-center gap-2 mb-6">
-          <span class="text-blue-400">●</span>
-          <span class="text-white font-semibold">Skills & Technologies</span>
-        </div>
-        
-        <div class="ml-6 pl-6 border-l-2 border-gray-800 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <TerminalSection title="Skills & Technologies" bulletType="secondary">
+        <div class="terminal-indent grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 class="text-cyan-400 mb-3 font-semibold">Frontend:</h3>
+            <TerminalText variant="h3">Frontend:</TerminalText>
             <div class="flex flex-wrap gap-2">
-              <span class="px-2 py-1 bg-gray-900 text-gray-300 rounded border border-gray-800 hover:border-gray-600 hover:text-white transition-colors">React</span>
-              <span class="px-2 py-1 bg-gray-900 text-gray-300 rounded border border-gray-800 hover:border-gray-600 hover:text-white transition-colors">TypeScript</span>
-              <span class="px-2 py-1 bg-gray-900 text-gray-300 rounded border border-gray-800 hover:border-gray-600 hover:text-white transition-colors">Tailwind</span>
-              <span class="px-2 py-1 bg-gray-900 text-gray-300 rounded border border-gray-800 hover:border-gray-600 hover:text-white transition-colors">Astro</span>
+              <TechTag variant="muted">React</TechTag>
+              <TechTag variant="muted">TypeScript</TechTag>
+              <TechTag variant="muted">Tailwind</TechTag>
+              <TechTag variant="muted">Astro</TechTag>
             </div>
           </div>
           <div>
-            <h3 class="text-cyan-400 mb-3 font-semibold">Backend:</h3>
+            <TerminalText variant="h3">Backend:</TerminalText>
             <div class="flex flex-wrap gap-2">
-              <span class="px-2 py-1 bg-gray-900 text-gray-300 rounded border border-gray-800 hover:border-gray-600 hover:text-white transition-colors">Node.js</span>
-              <span class="px-2 py-1 bg-gray-900 text-gray-300 rounded border border-gray-800 hover:border-gray-600 hover:text-white transition-colors">Python</span>
-              <span class="px-2 py-1 bg-gray-900 text-gray-300 rounded border border-gray-800 hover:border-gray-600 hover:text-white transition-colors">PostgreSQL</span>
-              <span class="px-2 py-1 bg-gray-900 text-gray-300 rounded border border-gray-800 hover:border-gray-600 hover:text-white transition-colors">REST APIs</span>
+              <TechTag variant="muted">Node.js</TechTag>
+              <TechTag variant="muted">Python</TechTag>
+              <TechTag variant="muted">PostgreSQL</TechTag>
+              <TechTag variant="muted">REST APIs</TechTag>
             </div>
           </div>
           <div>
-            <h3 class="text-cyan-400 mb-3 font-semibold">DevOps:</h3>
+            <TerminalText variant="h3">DevOps:</TerminalText>
             <div class="flex flex-wrap gap-2">
-              <span class="px-2 py-1 bg-gray-900 text-gray-300 rounded border border-gray-800 hover:border-gray-600 hover:text-white transition-colors">Docker</span>
-              <span class="px-2 py-1 bg-gray-900 text-gray-300 rounded border border-gray-800 hover:border-gray-600 hover:text-white transition-colors">AWS</span>
-              <span class="px-2 py-1 bg-gray-900 text-gray-300 rounded border border-gray-800 hover:border-gray-600 hover:text-white transition-colors">CI/CD</span>
-              <span class="px-2 py-1 bg-gray-900 text-gray-300 rounded border border-gray-800 hover:border-gray-600 hover:text-white transition-colors">Git</span>
+              <TechTag variant="muted">Docker</TechTag>
+              <TechTag variant="muted">AWS</TechTag>
+              <TechTag variant="muted">CI/CD</TechTag>
+              <TechTag variant="muted">Git</TechTag>
             </div>
           </div>
         </div>
-      </section>
+      </TerminalSection>
 
       <!-- Contact/Social Links -->
-      <section class="font-mono text-sm border-t-2 border-gray-800 pt-12">
-        <div class="flex items-center gap-2 mb-6">
-          <span class="text-emerald-400">●</span>
-          <span class="text-white font-semibold">Connect</span>
-        </div>
-        <div class="ml-6 pl-6 border-l-2 border-gray-800 flex flex-col gap-3">
-          <a 
-            href="https://github.com/ironwithout"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-gray-400 hover:text-cyan-400 transition-colors"
-          >
-            → github.com/ironwithout
-          </a>
-          <a 
-            href="https://www.linkedin.com/in/miguel-sanchez-devops"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-gray-400 hover:text-cyan-400 transition-colors"
-          >
-            → linkedin.com/in/miguel-sanchez-devops
-          </a>
-        </div>
+      <section class="font-mono text-sm border-t-2 border-terminal-border pt-12">
+        <TerminalSection title="Connect" bulletType="success">
+          <div class="terminal-indent flex flex-col gap-3">
+            <TerminalLink href="https://github.com/ironwithout" external arrow>
+              github.com/ironwithout
+            </TerminalLink>
+            <TerminalLink href="https://www.linkedin.com/in/miguel-sanchez-devops" external arrow>
+              linkedin.com/in/miguel-sanchez-devops
+            </TerminalLink>
+          </div>
+        </TerminalSection>
       </section>
     </div>
   </div>

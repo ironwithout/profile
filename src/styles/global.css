@@ -4,6 +4,98 @@
 
 @layer base {
   body {
-    @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+    @apply bg-terminal-bg text-text-primary font-mono;
+  }
+}
+
+/* Design System - Reusable Component Classes */
+@layer components {
+  /* Terminal Bullet Points */
+  .terminal-bullet {
+    @apply text-accent-primary mt-1 flex-shrink-0;
+  }
+  
+  .terminal-bullet-success {
+    @apply text-accent-success mt-1 flex-shrink-0;
+  }
+  
+  /* Terminal Borders & Indentation */
+  .terminal-indent {
+    @apply ml-terminal-indent pl-terminal-indent border-l-2 border-terminal-border;
+  }
+  
+  /* Terminal Section Headers */
+  .terminal-section-header {
+    @apply flex items-center gap-2 mb-6;
+  }
+  
+  /* Terminal Card/Surface */
+  .terminal-card {
+    @apply bg-terminal-surface border border-terminal-border rounded-lg p-6 hover:border-terminal-hover transition-colors;
+  }
+  
+  /* Technology Tags */
+  .tech-tag {
+    @apply px-2 py-1 bg-terminal-surface text-accent-primary rounded border border-terminal-border hover:border-accent-primary transition-colors text-xs;
+  }
+  
+  .tech-tag-muted {
+    @apply px-2 py-1 bg-terminal-surface text-text-secondary rounded border border-terminal-border hover:border-terminal-hover hover:text-text-primary transition-colors text-xs;
+  }
+  
+  /* Links */
+  .terminal-link {
+    @apply text-text-muted hover:text-accent-primary transition-colors;
+  }
+  
+  .terminal-link-arrow {
+    @apply text-text-muted hover:text-accent-primary transition-colors;
+  }
+  
+  .terminal-link-arrow::before {
+    content: '→ ';
+  }
+  
+  /* Headings */
+  .terminal-h1 {
+    @apply text-4xl mb-4 text-text-primary;
+  }
+  
+  .terminal-h2 {
+    @apply text-2xl mb-3 text-text-primary font-semibold;
+  }
+  
+  .terminal-h3 {
+    @apply text-lg mb-2 text-accent-primary font-semibold;
+  }
+  
+  /* Text Variants */
+  .terminal-text {
+    @apply text-text-secondary leading-relaxed;
+  }
+  
+  .terminal-text-muted {
+    @apply text-text-muted leading-relaxed;
+  }
+  
+  /* Command Prompt */
+  .terminal-prompt::before {
+    content: '$ ';
+    @apply text-accent-success;
+  }
+  
+  /* Tree branch characters */
+  .terminal-tree-branch::before {
+    content: '┖ ';
+    @apply text-text-dim;
+  }
+  
+  /* Status indicators */
+  .status-active {
+    @apply text-accent-success;
+  }
+  
+  .status-inactive {
+    @apply text-accent-secondary;
   }
 }

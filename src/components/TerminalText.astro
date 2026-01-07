@@ -1,0 +1,36 @@
+---
+/**
+ * Reusable text component with terminal styling variants
+ * Usage: <TerminalText variant="h1">Your text</TerminalText>
+ */
+type Variant = 'h1' | 'h2' | 'h3' | 'body' | 'muted' | 'prompt' | 'tree-branch';
+
+interface Props {
+  variant?: Variant;
+  class?: string;
+}
+
+const props = Astro.props as Props;
+const variant = props.variant ?? 'body';
+const className = props.class ?? '';
+
+const variantClasses: Record<Variant, string> = {
+  h1: 'terminal-h1',
+  h2: 'terminal-h2',
+  h3: 'terminal-h3',
+  body: 'terminal-text',
+  muted: 'terminal-text-muted',
+  prompt: 'terminal-prompt text-text-primary',
+  'tree-branch': 'terminal-tree-branch terminal-text',
+};
+
+const classes = `${variantClasses[variant]} ${className}`;
+---
+
+{variant === 'h1' && <h1 class={classes}><slot /></h1>}
+{variant === 'h2' && <h2 class={classes}><slot /></h2>}
+{variant === 'h3' && <h3 class={classes}><slot /></h3>}
+{variant === 'body' && <p class={classes}><slot /></p>}
+{variant === 'muted' && <p class={classes}><slot /></p>}
+{variant === 'prompt' && <div class={classes}><slot /></div>}
+{variant === 'tree-branch' && <div class={classes}><slot /></div>}

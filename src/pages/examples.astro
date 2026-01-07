@@ -1,0 +1,237 @@
+---
+/**
+ * EXAMPLE: How to Use the Design System
+ * 
+ * This file demonstrates practical usage of the unified design system.
+ * Copy these patterns for your own pages and components.
+ */
+import Layout from '../layouts/Layout.astro';
+import TerminalSection from '../components/TerminalSection.astro';
+import TerminalText from '../components/TerminalText.astro';
+import TerminalLink from '../components/TerminalLink.astro';
+import TechTag from '../components/TechTag.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ExperienceCard from '../components/ExperienceCard.astro';
+---
+
+<Layout title="Design System Examples">
+  <div class="min-h-screen bg-terminal-bg">
+    <div class="container mx-auto px-4 py-12 max-w-5xl">
+      
+      <!-- Example 1: Hero Section with Command Prompt -->
+      <TerminalSection>
+        <div class="text-text-dim text-sm mb-2">~/examples/hero</div>
+        <TerminalText variant="h1">
+          <span class="terminal-prompt">introduction</span>
+        </TerminalText>
+        <div class="terminal-indent space-y-4">
+          <TerminalText variant="body">
+            Welcome to the unified design system! This page demonstrates common patterns.
+          </TerminalText>
+        </div>
+      </TerminalSection>
+
+      <!-- Example 2: Section with Title and Bullet -->
+      <TerminalSection title="Typography Examples" bulletType="primary">
+        <div class="terminal-indent space-y-4">
+          <TerminalText variant="h2">This is an H2 heading</TerminalText>
+          <TerminalText variant="h3">This is an H3 heading (cyan)</TerminalText>
+          <TerminalText variant="body">
+            This is body text with normal styling.
+          </TerminalText>
+          <TerminalText variant="muted">
+            This is muted text for less important information.
+          </TerminalText>
+          <TerminalText variant="tree-branch">
+            This text has a tree branch symbol (┖)
+          </TerminalText>
+        </div>
+      </TerminalSection>
+
+      <!-- Example 3: Technology Tags -->
+      <TerminalSection title="Tech Stacks" bulletType="secondary">
+        <div class="terminal-indent space-y-6">
+          <div>
+            <TerminalText variant="h3">Primary Accent Tags</TerminalText>
+            <div class="flex flex-wrap gap-2 mt-3">
+              <TechTag>React</TechTag>
+              <TechTag>TypeScript</TechTag>
+              <TechTag>Node.js</TechTag>
+              <TechTag>Docker</TechTag>
+            </div>
+          </div>
+
+          <div>
+            <TerminalText variant="h3">Muted Style Tags</TerminalText>
+            <div class="flex flex-wrap gap-2 mt-3">
+              <TechTag variant="muted">Python</TechTag>
+              <TechTag variant="muted">PostgreSQL</TechTag>
+              <TechTag variant="muted">AWS</TechTag>
+            </div>
+          </div>
+        </div>
+      </TerminalSection>
+
+      <!-- Example 4: Links -->
+      <TerminalSection title="Links & Navigation" bulletType="success">
+        <div class="terminal-indent flex flex-col gap-3">
+          <div>
+            <TerminalText variant="body" class="mb-2">Basic links:</TerminalText>
+            <TerminalLink href="#">Regular link</TerminalLink>
+          </div>
+
+          <div>
+            <TerminalText variant="body" class="mb-2">Links with arrow prefix:</TerminalText>
+            <TerminalLink href="#" arrow>Link with arrow</TerminalLink>
+          </div>
+
+          <div>
+            <TerminalText variant="body" class="mb-2">External links:</TerminalText>
+            <TerminalLink href="https://github.com" external arrow>
+              github.com/username
+            </TerminalLink>
+          </div>
+        </div>
+      </TerminalSection>
+
+      <!-- Example 5: Cards with Terminal Card Class -->
+      <TerminalSection title="Card Components" bulletType="primary">
+        <TerminalText variant="body" class="mb-4">
+          Cards use the .terminal-card class for consistent styling with hover effects.
+        </TerminalText>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="terminal-card">
+            <TerminalText variant="h3">Feature Card</TerminalText>
+            <TerminalText variant="body" class="mt-2 mb-4">
+              Terminal-styled card with automatic borders and hover effects.
+            </TerminalText>
+            <div class="flex gap-2">
+              <TechTag>React</TechTag>
+              <TechTag>Tailwind</TechTag>
+            </div>
+          </div>
+
+          <div class="terminal-card">
+            <TerminalText variant="h3">Info Card</TerminalText>
+            <TerminalText variant="muted" class="mt-2 mb-4">
+              Cards are perfect for displaying projects, features, or any grouped content.
+            </TerminalText>
+            <div class="flex gap-2">
+              <TechTag variant="muted">Node.js</TechTag>
+              <TechTag variant="muted">Docker</TechTag>
+            </div>
+          </div>
+        </div>
+      </TerminalSection>
+
+      <!-- Example 6: Status Indicators -->
+      <TerminalSection title="Status Indicators">
+        <div class="terminal-indent space-y-4">
+          <div class="flex items-center gap-3">
+            <span class="status-active">●</span>
+            <TerminalText variant="body">Active status (green)</TerminalText>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="status-inactive">●</span>
+            <TerminalText variant="body">Inactive status (blue)</TerminalText>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="terminal-bullet-success">●</span>
+            <TerminalText variant="body">Success bullet (green)</TerminalText>
+          </div>
+        </div>
+      </TerminalSection>
+
+      <!-- Example 7: Responsive Grid Layout -->
+      <TerminalSection title="Responsive Layouts" bulletType="secondary">
+        <TerminalText variant="body" class="mb-4">
+          Grid automatically adjusts: 1 column on mobile, 2 on tablet, 3 on desktop.
+        </TerminalText>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="terminal-card">
+            <TerminalText variant="h3">Column 1</TerminalText>
+            <TerminalText variant="muted" class="mt-2">Responsive card layout</TerminalText>
+          </div>
+          <div class="terminal-card">
+            <TerminalText variant="h3">Column 2</TerminalText>
+            <TerminalText variant="muted" class="mt-2">Adapts to screen size</TerminalText>
+          </div>
+          <div class="terminal-card">
+            <TerminalText variant="h3">Column 3</TerminalText>
+            <TerminalText variant="muted" class="mt-2">Clean and consistent</TerminalText>
+          </div>
+        </div>
+      </TerminalSection>
+
+      <!-- Example 8: Direct CSS Classes -->
+      <TerminalSection title="Using CSS Classes Directly">
+        <div class="terminal-indent space-y-4">
+          <p class="terminal-text">
+            You can also use the CSS classes directly without components.
+          </p>
+          <p class="terminal-text-muted">
+            This is useful for simple text that doesn't need component props.
+          </p>
+          <div class="flex gap-2">
+            <span class="tech-tag">Direct</span>
+            <span class="tech-tag-muted">CSS</span>
+            <span class="tech-tag">Classes</span>
+          </div>
+          <a href="#" class="terminal-link-arrow">Link with arrow class</a>
+        </div>
+      </TerminalSection>
+
+      <!-- Example 9: ProjectCard Component -->
+      <TerminalSection title="ProjectCard Component" bulletType="primary">
+        <TerminalText variant="body" class="mb-4">
+          The ProjectCard component displays projects as cards with tech stacks and optional links.
+        </TerminalText>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <ProjectCard
+            title="Personal Portfolio Website"
+            description="Modern portfolio built with Astro, featuring a terminal-inspired design system, blog functionality, and Docker deployment"
+            technologies={["Astro", "TypeScript", "Tailwind", "Docker"]}
+            link="https://example.com"
+            github="https://github.com/ironwithout/profile"
+          />
+          <ProjectCard
+            title="API Gateway Service"
+            description="Microservices authentication gateway with JWT validation and rate limiting"
+            technologies={["Node.js", "Express", "Redis", "PostgreSQL"]}
+            github="https://github.com/example/api-gateway"
+          />
+          <ProjectCard
+            title="Real-time Analytics Dashboard"
+            description="Live metrics dashboard processing streaming data with interactive visualizations"
+            technologies={["React", "WebSocket", "D3.js", "Python"]}
+            link="https://example.com/dashboard"
+          />
+        </div>
+      </TerminalSection>
+
+      <!-- Example 10: ExperienceCard Component -->
+      <TerminalSection title="ExperienceCard Component" bulletType="secondary">
+        <div class="terminal-indent">
+          <TerminalText variant="body" class="mb-4">
+            The ExperienceCard component displays work experience with achievements and tech stack.
+          </TerminalText>
+          <ExperienceCard
+            company="Example Corp"
+            role="Senior Developer"
+            period="2023 → Present"
+            location="Remote"
+            status="current"
+            description="Leading development of scalable web applications"
+            achievements={[
+              "Built microservices platform serving 50K+ users",
+              "Reduced API latency by 40% through optimization",
+              "Mentored team of 3 junior developers"
+            ]}
+            technologies={["React", "Node.js", "AWS", "Docker"]}
+          />
+        </div>
+      </TerminalSection>
+
+    </div>
+  </div>
+</Layout>

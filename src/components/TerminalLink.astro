@@ -1,0 +1,29 @@
+---
+/**
+ * Reusable terminal-styled link component
+ * Usage: <TerminalLink href="..." arrow>Link text</TerminalLink>
+ */
+interface Props {
+  href: string;
+  arrow?: boolean;
+  external?: boolean;
+  class?: string;
+}
+
+const { href, arrow = false, external = false, class: className = '' } = Astro.props;
+
+const externalProps = external ? {
+  target: '_blank',
+  rel: 'noopener noreferrer'
+} : {};
+
+const linkClass = arrow ? 'terminal-link-arrow' : 'terminal-link';
+---
+
+<a 
+  href={href} 
+  class={`${linkClass} ${className}`}
+  {...externalProps}
+>
+  <slot />
+</a>

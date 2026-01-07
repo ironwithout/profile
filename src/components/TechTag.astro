@@ -1,0 +1,18 @@
+---
+/**
+ * Reusable technology tag component
+ * Usage: <TechTag variant="primary">React</TechTag>
+ */
+interface Props {
+  variant?: 'primary' | 'muted';
+  class?: string;
+}
+
+const { variant = 'primary', class: className = '' } = Astro.props;
+
+const variantClass = variant === 'primary' ? 'tech-tag' : 'tech-tag-muted';
+---
+
+<span class={`${variantClass} ${className}`}>
+  <slot />
+</span>
