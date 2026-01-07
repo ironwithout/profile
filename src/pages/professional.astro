@@ -1,6 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ExperienceCard from '../components/ExperienceCard.astro';
+import TerminalSection from '../components/TerminalSection.astro';
+import TerminalText from '../components/TerminalText.astro';
+import TechTag from '../components/TechTag.astro';
 
 const experiences = [
   {
@@ -56,18 +59,18 @@ const skills = [
 ---
 
 <Layout title="Professional Experience" description="Career history and technical background">
-  <div class="min-h-screen bg-gray-950 text-gray-300">
+  <div class="min-h-screen bg-terminal-bg text-text-secondary">
     <div class="container mx-auto px-4 py-12 max-w-5xl">
       
       <!-- Terminal-style header -->
       <div class="mb-12 font-mono">
-        <div class="text-gray-500 text-sm mb-2">~/experience</div>
-        <h1 class="text-4xl text-white mb-4 font-semibold">
-          <span class="text-emerald-400">$</span> cat professional_history.log
+        <div class="text-text-dim text-sm mb-2">~/experience</div>
+        <h1 class="text-4xl text-text-primary mb-4 font-semibold">
+          <span class="text-accent-success">$</span> cat professional_history.log
         </h1>
-        <div class="text-gray-400 text-sm">
-          Listed <span class="text-cyan-400 font-semibold">{experiences.length}</span> positions 
-          <span class="text-gray-600">(Ctrl+F to search)</span>
+        <div class="text-text-muted text-sm">
+          Listed <span class="text-accent-primary font-semibold">{experiences.length}</span> positions 
+          <span class="text-text-dim">(Ctrl+F to search)</span>
         </div>
       </div>
 
@@ -79,28 +82,25 @@ const skills = [
       </div>
 
       <!-- Skills grid -->
-      <div class="border-t-2 border-gray-800 pt-12 font-mono text-sm">
-        <div class="flex items-center gap-2 mb-6">
-          <span class="text-blue-400">●</span>
-          <span class="text-white font-semibold">Skills & Technologies</span>
-        </div>
-        
-        <div class="ml-6 pl-6 border-l-2 border-gray-800 grid grid-cols-1 md:grid-cols-2 gap-8">
-          {skills.map(({ category, items }) => (
-            <div>
-              <div class="text-cyan-400 mb-3 font-semibold">{category}:</div>
-              <div class="flex flex-wrap gap-2">
-                {items.map(item => (
-                  <span class="px-2 py-1 bg-gray-900 text-gray-300 rounded border border-gray-800 hover:border-gray-600 hover:text-white transition-colors">{item}</span>
-                ))}
+      <div class="border-t-2 border-terminal-border pt-12 font-mono text-sm">
+        <TerminalSection title="Skills & Technologies" bulletType="secondary">
+          <div class="terminal-indent grid grid-cols-1 md:grid-cols-2 gap-8">
+            {skills.map(({ category, items }) => (
+              <div>
+                <TerminalText variant="h3">{category}:</TerminalText>
+                <div class="flex flex-wrap gap-2">
+                  {items.map(item => (
+                    <TechTag variant="muted">{item}</TechTag>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </TerminalSection>
       </div>
 
       <!-- Footer -->
-      <div class="mt-16 pt-8 border-t border-gray-800 dark:border-gray-800 font-mono text-xs text-gray-600 dark:text-gray-600">
+      <div class="mt-16 pt-8 border-t border-terminal-border font-mono text-xs text-text-dim">
         <div class="flex items-center gap-2">
           <span class="animate-pulse">▊</span>
           <span>End of file</span>
