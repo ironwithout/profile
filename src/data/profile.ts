@@ -10,7 +10,7 @@ export const profile = {
  * Skills organized by category
  */
 export const skills = {
-  frontend: ["React", "TypeScript", "Vue.js", "Astro", "Tailwind CSS", "Next.js"],
-  backend: ["Node.js", "Python", "Django", "Express", "PostgreSQL", "MongoDB", "Redis"],
-  devops: ["AWS", "GCP", "Docker", "Kubernetes", "Jenkins", "CI/CD"],
+  Frontend: ["React", "TypeScript", "Vue.js", "Astro", "Tailwind CSS", "Next.js"],
+  Backend: ["Node.js", "Python", "Django", "Express", "PostgreSQL", "MongoDB", "Redis"],
+  "DevOps & Cloud": ["AWS", "GCP", "Docker", "Kubernetes", "Jenkins", "CI/CD"],
 };

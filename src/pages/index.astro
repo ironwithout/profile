@@ -64,47 +64,20 @@ import { projects } from '../data/projects';
             Skills & Technologies
           </TechText>
           <div class="mt-8 space-y-8">
-            <!-- Frontend -->
-            <div>
-              <TechText variant="h3" class="mb-4">
-                Frontend
-              </TechText>
-              <div class="flex flex-wrap gap-3">
-                {skills.frontend.map(tech => (
-                  <span class="px-4 py-2 bg-tech-card border border-tech-border rounded-lg text-tech-text-primary hover:border-tech-accent transition-colors">
-                    {tech}
-                  </span>
-                ))}
+            {Object.entries(skills).map(([category, techs]) => (
+              <div>
+                <TechText variant="h3" class="mb-4">
+                  {category}
+                </TechText>
+                <div class="flex flex-wrap gap-3">
+                  {techs.map(tech => (
+                    <span class="px-4 py-2 bg-tech-card border border-tech-border rounded-lg text-tech-text-primary hover:border-tech-accent transition-colors">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-            
-            <!-- Backend -->
-            <div>
-              <TechText variant="h3" class="mb-4">
-                Backend
-              </TechText>
-              <div class="flex flex-wrap gap-3">
-                {skills.backend.map(tech => (
-                  <span class="px-4 py-2 bg-tech-card border border-tech-border rounded-lg text-tech-text-primary hover:border-tech-accent transition-colors">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-            
-            <!-- DevOps & Cloud -->
-            <div>
-              <TechText variant="h3" class="mb-4">
-                DevOps & Cloud
-              </TechText>
-              <div class="flex flex-wrap gap-3">
-                {skills.devops.map(tech => (
-                  <span class="px-4 py-2 bg-tech-card border border-tech-border rounded-lg text-tech-text-primary hover:border-tech-accent transition-colors">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </TechSection>
       </div>
