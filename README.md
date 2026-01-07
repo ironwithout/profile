@@ -1,56 +1,63 @@
-# Professional Profile Website
+# Profile Website
 
-A lightweight, content-focused profile website built with Astro, Tailwind CSS, and Docker.
+Single-page portfolio built with **Astro**, TypeScript, and Tailwind CSS. Minimal JavaScript, snap-scroll sections, Docker deployment ready.
 
-## Features
+## Technology Stack
 
-- 🚀 Fast static site generation with Astro
-- 🎨 Tailwind CSS for styling
-- 📝 Markdown-based blog/content
-- 🐳 Docker containerized
-- 📱 Responsive design
+- **Astro** - Static site generator with minimal JavaScript
+- **TypeScript** - Type-safe component development
+- **Tailwind CSS** - Utility-first styling with custom tech theme
+- **Docker** - Containerized deployment with Nginx
+- **Event Delegation** - CSP-compliant interaction patterns
 
-## Getting Started
+## Architecture
 
-### Development
+**Single Page Application** with 4 snap-scroll sections:
+- Introduction
+- Career (expandable experience cards)
+- Skills (categorized tech stack)
+- Projects (with links)
+
+**Key Features:**
+- Visual scroll navigation with fixed indicator dots
+- Fade-in animations on scroll via Intersection Observer
+- Event delegation pattern for all interactions
+- TypeScript-based content (no CMS, no markdown)
+
+## Development
 
 ```bash
 # Install dependencies
 npm install
 
-# Start dev server
+# Start dev server (localhost:4321)
 npm run dev
+
+# Type check + build
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-Visit `http://localhost:4321`
-
-### Docker
+## Docker
 
 ```bash
-# Build and run with Docker Compose
+# Build and run (port 3000)
 docker-compose up --build
 
-# Or build and run manually
+# Manual build
 docker build -t profile .
 docker run -p 3000:80 profile
 ```
 
-Visit `http://localhost:3000`
+## Content Management
 
-## Project Structure
+All content lives in TypeScript files (`src/data/`). To update content, edit the relevant data file directly.
 
-```
-src/
-├── layouts/       # Page layouts
-├── pages/         # Routes (index, professional, personal, blog)
-├── components/    # Reusable components
-├── content/       # Markdown content (blog posts)
-└── styles/        # Global styles
-```
+## Styling System
 
-## Customization
-
-1. Update personal information in `src/pages/index.astro`
-2. Add projects in `src/pages/professional.astro` and `src/pages/personal.astro`
-3. Create blog posts in `src/content/blog/`
-4. Customize colors in `tailwind.config.mjs`
+**Tech Theme Design System:**
+- CSS custom properties in `global.css`
+- Tailwind tokens in `tailwind.config.mjs`
+- Semantic color palette: `tech-*`, `accent-*`, `text-*`
