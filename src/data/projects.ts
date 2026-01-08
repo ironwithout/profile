@@ -24,9 +24,9 @@ export const projects: Project[] = [
     github: "https://github.com/ironwithout/profile",
   },
   {
-    title: "AWS Profile IaC",
+    title: "Profile website infrastructure",
     description: "Infrastructure as Code for deploying my personal profile website on AWS using Terraform and GitHub Actions.",
     technologies: ["Terraform", "GitHub Actions", "AWS"],
-    github: "https://github.com/ironwithout/aws-iac",
+    github: "https://github.com/ironwithout/profile-website-infra",
   }
 ];
